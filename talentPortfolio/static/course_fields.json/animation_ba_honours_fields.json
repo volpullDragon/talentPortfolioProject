@@ -1,0 +1,48 @@
+{
+  "course": "Animation BA Honours",
+  "course_family": "Media, Arts & Design",
+  "groups": {
+    "Creative Practice": [
+      "Creative Direction",
+      "Visual Communication",
+      "Storytelling",
+      "Concept Development"
+    ],
+    "Production Skills": [
+      "Content Production",
+      "Editing & Post-Production",
+      "Photography/Video",
+      "Design Software"
+    ],
+    "Audience & Culture": [
+      "Audience Research",
+      "Cultural Analysis",
+      "Brand & Identity",
+      "Campaign Planning"
+    ],
+    "Professional Skills": [
+      "Portfolio Development",
+      "Presentation Skills",
+      "Collaboration",
+      "Freelance/Industry Practice"
+    ]
+  },
+  "fields": [
+    "Creative Direction",
+    "Visual Communication",
+    "Storytelling",
+    "Concept Development",
+    "Content Production",
+    "Editing & Post-Production",
+    "Photography/Video",
+    "Design Software",
+    "Audience Research",
+    "Cultural Analysis",
+    "Brand & Identity",
+    "Campaign Planning",
+    "Portfolio Development",
+    "Presentation Skills",
+    "Collaboration",
+    "Freelance/Industry Practice"
+  ]
+}

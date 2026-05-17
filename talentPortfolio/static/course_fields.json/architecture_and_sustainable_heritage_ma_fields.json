@@ -1,0 +1,48 @@
+{
+  "course": "Architecture and Sustainable Heritage MA",
+  "course_family": "Architecture & Built Environment",
+  "groups": {
+    "Design & Planning": [
+      "Architectural Design",
+      "Urban Planning",
+      "Spatial Thinking",
+      "Design Communication"
+    ],
+    "Technical Delivery": [
+      "CAD/BIM",
+      "Building Technology",
+      "Construction Methods",
+      "Technical Drawing"
+    ],
+    "Sustainability & Safety": [
+      "Sustainable Design",
+      "Environmental Analysis",
+      "Building Regulations",
+      "Health & Safety"
+    ],
+    "Project Practice": [
+      "Site Analysis",
+      "Project Coordination",
+      "Client Briefing",
+      "Contract Awareness"
+    ]
+  },
+  "fields": [
+    "Architectural Design",
+    "Urban Planning",
+    "Spatial Thinking",
+    "Design Communication",
+    "CAD/BIM",
+    "Building Technology",
+    "Construction Methods",
+    "Technical Drawing",
+    "Sustainable Design",
+    "Environmental Analysis",
+    "Building Regulations",
+    "Health & Safety",
+    "Site Analysis",
+    "Project Coordination",
+    "Client Briefing",
+    "Contract Awareness"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "course": "Applied Artificial Intelligence MSc",
+  "course_family": "Computing & Digital",
+  "groups": {
+    "Programming & Software": [
+      "Software Engineering",
+      "Web Development",
+      "Mobile App Development",
+      "Testing & QA"
+    ],
+    "Data & AI": [
+      "Data Analysis",
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Data Engineering"
+    ],
+    "Systems & Cloud": [
+      "Cloud Computing",
+      "DevOps",
+      "Database Systems",
+      "Operating Systems"
+    ],
+    "Security & Delivery": [
+      "Cyber Security",
+      "Computer Networks",
+      "Version Control (Git)",
+      "Agile Delivery"
+    ]
+  },
+  "fields": [
+    "Software Engineering",
+    "Web Development",
+    "Mobile App Development",
+    "Testing & QA",
+    "Data Analysis",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Data Engineering",
+    "Cloud Computing",
+    "DevOps",
+    "Database Systems",
+    "Operating Systems",
+    "Cyber Security",
+    "Computer Networks",
+    "Version Control (Git)",
+    "Agile Delivery"
+  ]
+}

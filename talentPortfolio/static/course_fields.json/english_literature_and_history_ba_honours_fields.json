@@ -1,0 +1,48 @@
+{
+  "course": "English Literature and History BA Honours",
+  "course_family": "Languages & Humanities",
+  "groups": {
+    "Language Skills": [
+      "Advanced Writing",
+      "Oral Communication",
+      "Translation Basics",
+      "Intercultural Communication"
+    ],
+    "Research & Analysis": [
+      "Critical Analysis",
+      "Textual Analysis",
+      "Academic Research",
+      "Argumentation"
+    ],
+    "Global Context": [
+      "International Communication",
+      "Cultural Awareness",
+      "Historical Context",
+      "Ethics & Society"
+    ],
+    "Professional Skills": [
+      "Editing & Proofreading",
+      "Presentation Skills",
+      "Project Planning",
+      "Reflective Practice"
+    ]
+  },
+  "fields": [
+    "Advanced Writing",
+    "Oral Communication",
+    "Translation Basics",
+    "Intercultural Communication",
+    "Critical Analysis",
+    "Textual Analysis",
+    "Academic Research",
+    "Argumentation",
+    "International Communication",
+    "Cultural Awareness",
+    "Historical Context",
+    "Ethics & Society",
+    "Editing & Proofreading",
+    "Presentation Skills",
+    "Project Planning",
+    "Reflective Practice"
+  ]
+}

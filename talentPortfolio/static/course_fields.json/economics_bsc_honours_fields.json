@@ -1,0 +1,48 @@
+{
+  "course": "Economics BSc Honours",
+  "course_family": "Finance & Economics",
+  "groups": {
+    "Core Finance": [
+      "Financial Analysis",
+      "Financial Reporting",
+      "Corporate Finance",
+      "Investment Fundamentals"
+    ],
+    "Quantitative Skills": [
+      "Statistics",
+      "Econometrics",
+      "Forecasting",
+      "Spreadsheet Modelling"
+    ],
+    "Risk & Regulation": [
+      "Risk Management",
+      "Compliance",
+      "Financial Regulation",
+      "Audit Awareness"
+    ],
+    "Market & Policy": [
+      "Macroeconomics",
+      "Microeconomics",
+      "Market Analysis",
+      "Policy Evaluation"
+    ]
+  },
+  "fields": [
+    "Financial Analysis",
+    "Financial Reporting",
+    "Corporate Finance",
+    "Investment Fundamentals",
+    "Statistics",
+    "Econometrics",
+    "Forecasting",
+    "Spreadsheet Modelling",
+    "Risk Management",
+    "Compliance",
+    "Financial Regulation",
+    "Audit Awareness",
+    "Macroeconomics",
+    "Microeconomics",
+    "Market Analysis",
+    "Policy Evaluation"
+  ]
+}
