@@ -1,0 +1,112 @@
+{# Job Detail template. #}
+{% extends "home/base.html" %}
+{% load humanize %}
+{% block title %}Talented Bank - {{ job.job_title }}{% endblock %}
+
+{% block content %}
+<section class="faculty-job-detail-page" data-faculty-job-detail-page>
+  <a href="{% url 'faculty-profile' %}" class="faculty-job-detail-back-link">
+    <i class="bi bi-arrow-left"></i>
+    <span>Back to Jobs Listings</span>
+  </a>
+
+  <header class="faculty-job-detail-hero">
+    <div class="faculty-job-detail-hero-main">
+      <h1>{{ job.job_title }}</h1>
+      <p>{{ job.profile.faculty.get_full_name|default:'Faculty Team' }}</p>
+      <div class="faculty-job-detail-meta-row">
+        <span><i class="bi bi-geo-alt"></i> {{ job.location|default:'Remote' }}</span>
+        <span><i class="bi bi-cash-stack"></i> {% if job.salary %}${{ job.salary }}{% else %}Salary TBC{% endif %}</span>
+        <span><i class="bi bi-briefcase"></i> Full-time</span>
+        <span><i class="bi bi-clock"></i> Posted {{ job.posted_date|naturalday }}</span>
+      </div>
+    </div>
+    <div class="faculty-job-detail-hero-pill">Faculty Post</div>
+  </header>
+
+  <section class="faculty-job-detail-layout">
+    <div class="faculty-job-detail-main-col">
+      <article class="faculty-job-detail-card">
+        <h2>About This Role</h2>
+
+        <div class="portfolio-about-display" data-about-display>
+          <p>{{ job.description|default:'No description has been added yet.' }}</p>
+        </div>
+
+        <form method="post" class="portfolio-about-form is-hidden" data-about-form data-preserve-scroll>
+          {% csrf_token %}
+          <input type="hidden" name="scroll_position" value="0" data-scroll-position>
+          <textarea name="job_about_text" class="portfolio-about-textarea" rows="6" maxlength="6000" data-about-input placeholder="Describe the role, team, and impact...">{{ job.description|default_if_none:'' }}</textarea>
+          <p class="portfolio-word-count" data-about-word-count>{{ job.description|default_if_none:''|wordcount }} / 500 words</p>
+          <div class="portfolio-about-actions">
+            <button type="submit" name="job_about_submit" class="portfolio-inline-save-btn" data-about-save>Submit</button>
+            <button type="button" class="portfolio-inline-cancel-btn" data-about-cancel>Cancel</button>
+          </div>
+        </form>
+
+        <div class="portfolio-about-edit-row">
+          <button type="button" class="portfolio-inline-edit-btn" data-about-edit>
+            <i class="bi bi-pencil"></i><span>Edit</span>
+          </button>
+        </div>
+      </article>
+
+      <article class="faculty-job-detail-card">
+        <h2>Required Skills and Tools</h2>
+        <form method="post" class="faculty-pill-editor" data-pill-editor data-preserve-scroll>
+          {% csrf_token %}
+          <input type="hidden" name="scroll_position" value="0" data-scroll-position>
+          <input type="hidden" id="requiredSkillsEntries" name="required_skills_entries" value="{{ job.required_skills_and_tools|default_if_none:'' }}" data-pill-hidden-input>
+          <div class="faculty-pill-editor-grid" data-pill-grid></div>
+          <div class="faculty-pill-editor-controls">
+            <input type="text" class="portfolio-strength-input" maxlength="80" placeholder="Add required skill..." data-pill-input>
+            <button type="button" class="portfolio-inline-save-btn" data-pill-add>Add</button>
+          </div>
+          <input type="hidden" name="job_required_skills_submit" value="1">
+        </form>
+      </article>
+
+      <article class="faculty-job-detail-card faculty-job-detail-offer-card">
+        <h2>Level of Confidence</h2>
+        <form method="post" class="faculty-pill-editor" data-pill-editor data-preserve-scroll>
+          {% csrf_token %}
+          <input type="hidden" name="scroll_position" value="0" data-scroll-position>
+          <input type="hidden" id="requirementsEntries" name="requirements_entries" value="{{ job.level_of_confidence|default_if_none:'' }}" data-pill-hidden-input>
+          <div class="faculty-pill-editor-grid" data-pill-grid></div>
+          <div class="faculty-pill-editor-controls">
+            <input type="text" class="portfolio-strength-input" maxlength="120" placeholder="Add level of confidence..." data-pill-input>
+            <button type="button" class="portfolio-inline-save-btn" data-pill-add>Add</button>
+          </div>
+          <input type="hidden" name="job_requirements_submit" value="1">
+        </form>
+      </article>
+    </div>
+
+    <aside class="faculty-job-detail-side-col">
+      <article class="faculty-job-detail-card faculty-job-detail-side-cta">
+        <a href="{% url 'edit-job-listing' job.id %}" class="faculty-job-detail-edit-btn"><i class="bi bi-pencil"></i><span>Edit job listing</span></a>
+      </article>
+
+      <article class="faculty-job-detail-card faculty-job-detail-mini-info">
+        <h3>About {{ job.profile.faculty.first_name|default:'Faculty' }}</h3>
+        <p><i class="bi bi-building"></i> Department: {{ job.profile.faculty.professor_of|default:'Computer Science' }}</p>
+        <p><i class="bi bi-geo-alt"></i> Location: {{ job.location|default:'Remote' }}</p>
+        <p><i class="bi bi-calendar-event"></i> Posted: {{ job.posted_date|naturalday }}</p>
+      </article>
+
+      <article class="faculty-job-detail-card faculty-job-detail-applications">
+        <h3>Number of Applications</h3>
+        <strong>{{ application_count }}</strong>
+        <a href="{% url 'applicant-tracking' %}?job={{ job.id }}">Review</a>
+      </article>
+
+      <article class="faculty-job-detail-card faculty-job-detail-side-cta">
+        <form method="post" action="{% url 'delete-job-listing' job.id %}" data-faculty-job-delete-form data-confirm-title="Delete job listing" data-confirm-message="Delete this job listing?" data-confirm-confirm-text="Delete" data-confirm-confirm-class="btn-danger">
+          {% csrf_token %}
+          <button type="submit" class="faculty-job-detail-delete-btn"><i class="bi bi-trash"></i><span>Delete listing</span></button>
+        </form>
+      </article>
+    </aside>
+  </section>
+</section>
+{% endblock %}

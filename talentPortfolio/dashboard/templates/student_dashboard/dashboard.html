@@ -1,0 +1,172 @@
+{% extends 'home/base.html' %}
+{% load humanize %}
+
+{% block title %}Talented Bank - Student Dashboard{% endblock %}
+
+{% block content %}
+<section class="student-job-board" data-student-job-board data-search-target="{% url 'student-job-search' %}" data-apply-url-template="{% url 'apply-to-job' 0 %}" data-save-url-template="{% url 'toggle-save-job' 0 %}">
+            <!-- Search Hero -->
+            <div class="search-hero">
+                <div>
+                    <div class="search-hero-subtitle">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 2L10 6L14 6.5L11 9.5L11.7 13.5L8 11.3L4.3 13.5L5 9.5L2 6.5L6 6L8 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Find Your Perfect Match
+                    </div>
+                    <h1 class="search-hero-title">Available Job Opportunities</h1>
+                    <p class="search-hero-description">Browse opportunities that match your skills and aspirations</p>
+                </div>
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+                            <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="#0a0a0a" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19 19L14.65 14.65" stroke="#0a0a0a" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" class="search-input" id="jobSearch" placeholder="Search by job title or required skills..." value="{{ active_search_query|default_if_none:'' }}">
+                    </div>
+                    <button class="search-button" type="button" data-student-search-submit>Search</button>
+                </div>
+            </div>
+
+            <!-- Dashboard with Sidebar and Stats -->
+            <div class="dashboard-container">
+                <nav class="navigation">
+                    <div class="nav-list">
+                        <a href="{% url 'student-applications' %}" class="nav-item">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <path d="M3 4H17V16C17 16.5304 16.7893 17.0391 16.4142 17.4142C16.0391 17.7893 15.5304 18 15 18H5C4.46957 18 3.96086 17.7893 3.58579 17.4142C3.21071 17.0391 3 16.5304 3 16V4Z" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 4H17V8H3V4Z" fill="currentColor" fill-opacity="0.1"/>
+                            </svg>
+                            Applications
+                        </a>
+                        <a href="{% url 'student-job-search' %}" class="nav-item active">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 6V10L13 12" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Job Search
+                        </a>
+                        <a href="{% url 'student-saved-jobs' %}" class="nav-item">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <path d="M5 2H15C15.5304 2 16.0391 2.21071 16.4142 2.58579C16.7893 2.96086 17 3.46957 17 4V18L10 14.5L3 18V4C3 3.46957 3.21071 2.96086 3.58579 2.58579C3.96086 2.21071 4.46957 2 5 2Z" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Saved Jobs
+                        </a>
+                        <a href="{% url 'users-portfolio' %}" class="nav-item" title="Portfolio">
+                                <svg viewBox="0 0 20 20" fill="none">
+                                <path d="M10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1Z" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 5V9L13 11" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Portfolio
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <div class="stat-label">Applications Sent</div>
+                            <div class="stat-number">{{ applications_count|default:"0" }}</div>
+                        </div>
+                        <div class="stat-icon stat-icon-blue">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M3 6H21M3 12H21M3 18H21" stroke="#155DFC" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <div class="stat-label">Interviews Scheduled</div>
+                            <div class="stat-number">{{ interviews_count|default:"0" }}</div>
+                        </div>
+                        <div class="stat-icon stat-icon-green">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="#00A63E" stroke-width="2"/>
+                                <path d="M8 2V6M16 2V6M3 10H21" stroke="#00A63E" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <div class="stat-label">Offers Received</div>
+                            <div class="stat-number">{{ offers_count|default:"0" }}</div>
+                        </div>
+                        <div class="stat-icon stat-icon-purple">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M9 11L12 14L22 4" stroke="#9810FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="#9810FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-section">
+                <h3 class="filter-title">Filters</h3>
+                <div class="filter-buttons">
+                    <a class="filter-btn {% if active_skill_filter == 'all' %}active{% else %}inactive{% endif %}" href="{% url 'dashboard-home' %}{% if all_jobs_querystring %}?{{ all_jobs_querystring }}{% endif %}">All Jobs</a>
+                    {% for filter_skill in required_skill_filters %}
+                        <a class="filter-btn {% if active_skill_filter == filter_skill.raw %}active{% else %}inactive{% endif %}" href="{% url 'dashboard-home' %}?{{ filter_skill.querystring }}">{{ filter_skill.label }}{% if filter_skill.count %} ({{ filter_skill.count }}){% endif %}</a>
+                    {% empty %}
+                        <span class="filter-btn inactive" role="status" aria-disabled="true">No skill filters available</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Job Listings -->
+            <div class="job-listings-section">
+                <div class="job-listings-header">
+                    <h2 class="listings-title">Available Jobs</h2>
+                    <p class="listings-count">Showing {{ jobs|length }} of {{ total_jobs_count|default:jobs|length }} opportunities</p>
+                </div>
+                <div class="job-cards">
+                    {% if jobs %}
+                        {% for job in jobs %}
+                        <div class="job-card" data-job-id="{{ job.id }}">
+                            <div class="job-content">
+                                <div class="job-header">
+                                    <h3 class="job-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_title }}</a></h3>
+                                    <span class="match-badge student-job-match-badge" aria-label="{{ job.match_score|default:0 }} percent match">{{ job.match_score|default:0 }}% Match</span>
+                                </div>
+                                <div class="job-meta">
+                                    <div class="job-meta-item"><i class="bi bi-building"></i>{{ job.profile.faculty.get_full_name|default:"Faculty" }}</div>
+                                    <div class="job-meta-item"><i class="bi bi-geo-alt"></i>{{ job.location|default:"Location TBD" }}</div>
+                                    <div class="job-meta-item"><i class="bi bi-cash-stack"></i>{% if job.salary %}${{ job.salary|floatformat:0 }}{% else %}Salary negotiable{% endif %}</div>
+                                </div>
+                                <div class="job-footer">
+                                    <span class="job-type">Full-time</span>
+                                    <span class="job-posted">Posted {{ job.posted_date|naturalday }}</span>
+                                </div>
+                                {% if job.description %}
+                                <p class="job-description-preview">{{ job.description|truncatewords:20 }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="job-actions">
+                                <button class="action-btn save{% if job.id in saved_job_ids %} saved{% endif %}" type="button" data-student-save-job data-job-id="{{ job.id }}" aria-pressed="{% if job.id in saved_job_ids %}true{% else %}false{% endif %}">
+                                    <i class="bi {% if job.id in saved_job_ids %}bi-bookmark-fill{% else %}bi-bookmark{% endif %}"></i>
+                                </button>
+                                <button class="action-btn apply" type="button" data-student-apply-job data-job-id="{{ job.id }}" {% if job.id in applied_job_ids %}disabled{% endif %}>{% if job.id in applied_job_ids %}Applied{% else %}Apply{% endif %}</button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="jobs-empty-state">
+                            <p>No job listings available at the moment. Check back soon!</p>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if total_jobs_count %}
+                <div class="job-listings-header" style="margin-top: 1rem;">
+                    <a class="btn btn-primary" href="{% url 'student-job-search' %}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}">View more jobs</a>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

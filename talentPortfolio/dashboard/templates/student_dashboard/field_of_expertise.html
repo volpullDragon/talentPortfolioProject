@@ -1,0 +1,108 @@
+{# Field Of Expertise template. #}
+{% extends "home/base.html" %}
+{% block title %}Talented Bank - {{ field_of_expertise.field_of_expertise }} - Portfolio{% endblock title %}
+
+{% block content %}
+<section
+  class="portfolio-page field-projects-page"
+  data-field-projects-page
+  data-field-name="{{ field_of_expertise.field_of_expertise|default_if_none:'' }}"
+  data-confidence-source="{{ field_of_expertise.level_of_confidence|default_if_none:'' }}"
+>
+  <a href="{% url 'users-portfolio' %}" class="faculty-job-detail-back-link">
+    <i class="bi bi-arrow-left"></i>
+    <span>Back to Portfolio</span>
+  </a>
+
+  <header class="portfolio-hero field-projects-hero">
+    <p class="portfolio-id"><i class="bi bi-stars"></i>Portfolio Field</p>
+    <h1>{{ field_of_expertise.field_of_expertise }}</h1>
+    <p class="portfolio-role">Projects, confidence, and practical skills in one place.</p>
+
+    <div class="portfolio-meta-row">
+      <span><i class="bi bi-folder2-open"></i> {{ projects|length }} Project{{ projects|length|pluralize }}</span>
+      <span><i class="bi bi-person-check"></i> Confidence: {% if field_of_expertise.level_of_confidence == 'Very High Confidence' %}Advanced Confidence{% else %}{{ field_of_expertise.level_of_confidence|default:'Not set yet' }}{% endif %}</span>
+    </div>
+
+    <div class="field-projects-hero-actions">
+      <a href="{% url 'add-project' field_of_expertise.id %}" class="portfolio-createField-btn field-projects-add-btn">
+        <i class="bi bi-plus-lg"></i><span>Add New Project</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="portfolio-overview-grid field-projects-overview">
+    <article class="portfolio-panel field-confidence-card">
+      <h2>Confidence Tracking</h2>
+      <p class="field-confidence-description">
+        This bar tracks your current confidence level for <strong>{{ field_of_expertise.field_of_expertise }}</strong>.
+      </p>
+
+      <div class="field-confidence-head">
+        <span class="field-confidence-label" data-confidence-label>{% if field_of_expertise.level_of_confidence == 'Very High Confidence' %}Advanced Confidence{% else %}{{ field_of_expertise.level_of_confidence|default:'Not set yet' }}{% endif %}</span>
+        <strong class="field-confidence-percent" data-confidence-value>0%</strong>
+      </div>
+      <div class="field-confidence-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Student confidence in this field">
+        <div class="field-confidence-fill" data-confidence-fill></div>
+        <input
+          id="confidence-slider"
+          type="range"
+          min="20"
+          max="100"
+          step="10"
+          value="60"
+          class="field-confidence-slider"
+          data-confidence-slider
+          aria-label="Drag to set confidence"
+        >
+      </div>
+
+      <form method="post" class="mt-3" data-confidence-form>
+        {% csrf_token %}
+        <input type="hidden" name="auto_confidence_update" value="1">
+        <input type="hidden" name="level_of_confidence" value="{{ field_of_expertise.level_of_confidence|default:'Moderate Confidence' }}" data-confidence-hidden>
+        <div class="field-confidence-update-row">
+          <p class="field-confidence-selected" data-confidence-selected>
+            {% if field_of_expertise.level_of_confidence == 'Very High Confidence' %}Advanced Confidence{% else %}{{ field_of_expertise.level_of_confidence|default:'Moderate Confidence' }}{% endif %}
+          </p>
+        </div>
+      </form>
+    </article>
+
+    <article class="portfolio-panel portfolio-panel-tight field-skills-card">
+      <h2>Skills Across Projects</h2>
+      <div class="field-skills-pill-row" data-skill-pills data-skills-source="{{ aggregated_skills|default_if_none:'' }}"></div>
+    </article>
+  </section>
+
+  <section class="portfolio-section">
+    <h2>{{ field_of_expertise.field_of_expertise }} Projects</h2>
+    <div class="portfolio-card-grid field-projects-grid">
+      {% for project in projects %}
+        <a href="{% url 'see-project-files' project.id %}" class="experience-card-anchor" data-field-project-card>
+          <article class="experience-card field-project-card">
+            <div class="experience-card-body field-project-card-body">
+              <div class="field-project-card-head">
+                <h3>{{ project.project_title }}</h3>
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </div>
+
+              <p class="field-project-label">Field</p>
+              <p class="field-project-value">{{ project.field_of_expertise.field_of_expertise }}</p>
+
+              <p class="field-project-label">Skills Demonstrated</p>
+              <div class="field-project-placeholder-row" data-skill-pills data-skills-source="{{ project.skills_demonstrated|default_if_none:'' }}"></div>
+            </div>
+          </article>
+        </a>
+      {% empty %}
+        <article class="field-projects-empty">
+          <i class="bi bi-folder-x"></i>
+          <h3>No projects found</h3>
+          <p>Create your first project for this field to start building your portfolio story.</p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</section>
+{% endblock content %}
