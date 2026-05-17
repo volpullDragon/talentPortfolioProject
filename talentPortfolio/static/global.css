@@ -1,0 +1,28 @@
+/* Global stylesheet entrypoint. Split into base, layout, components, and page partials. */
+/* Base primitives */
+@import url("css/base/base.css");
+
+/* Shared layers */
+@import url("css/layout/layout.css");
+@import url("css/components/components.css");
+@import url("css/pages/home/home.css");
+
+/* Dashboard and feature page groups */
+@import url("css/pages/dashboard/dashboard-pages.css");
+@import url("css/pages/dashboard/dashboard-overlays.css");
+@import url("css/pages/settings/settings.css");
+@import url("css/pages/messaging/messaging.css");
+@import url("css/pages/portfolio/portfolio.css");
+@import url("css/pages/projects/field-projects.css");
+@import url("css/pages/projects/project-add.css");
+@import url("css/pages/projects/project-detail.css");
+@import url("css/pages/faculty/faculty-profile.css");
+@import url("css/pages/faculty/faculty-job-detail.css");
+@import url("css/pages/faculty/faculty-dashboard.css");
+@import url("css/pages/auth/auth.css");
+@import url("css/pages/faculty/faculty-workflows.css");
+@import url("css/overlays/interview-overlay.css");
+@import url("css/overlays/invite-overlay.css");
+@import url("css/pages/student/student-common.css");
+@import url("css/pages/student/student-job-detail.css");
+@import url("css/pages/student/student-saved-jobs.css");
