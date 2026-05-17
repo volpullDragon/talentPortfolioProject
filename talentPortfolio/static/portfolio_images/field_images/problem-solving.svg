@@ -1,0 +1,19 @@
+<svg width="1000" height="304" viewBox="0 0 1000 304" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Problem Solving">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="hsl(235 80% 52%)"/>
+      <stop offset="100%" stop-color="hsl(251 78% 46%)"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="304" rx="20" fill="url(#bg)"/>
+
+  <circle cx="936" cy="44" r="88" fill="white" fill-opacity="0.14"/>
+  <circle cx="54" cy="252" r="82" fill="white" fill-opacity="0.10"/>
+
+  <rect x="14" y="60" width="972" height="4" fill="white" fill-opacity="0.52"/>
+  <rect x="14" y="92" width="560" height="4" fill="white" fill-opacity="0.42"/>
+  <text x="28" y="164" fill="white" font-size="46" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800">Problem Solving</text>
+  <text x="28" y="202" fill="white" fill-opacity="0.96" font-size="18" font-family="Inter, Segoe UI, Arial, sans-serif">Develop expertise in problem solving.</text>
+  <rect x="28" y="236" width="690" height="4" fill="white" fill-opacity="0.36"/>
+</svg>
