@@ -1,0 +1,11 @@
+Hi {{ full_name }},
+
+Welcome to Talented Bank.
+Your account has been created successfully.
+
+You can now sign in and start building your portfolio.
+
+Username: {{ username }}
+
+Regards,
+Talented Bank Team

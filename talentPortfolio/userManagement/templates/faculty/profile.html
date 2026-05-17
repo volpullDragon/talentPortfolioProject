@@ -1,0 +1,126 @@
+{# Profile template. #}
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}Talented Bank - Faculty Profile{% endblock %}
+
+{% block content %}
+<section class="faculty-profile-page" data-faculty-profile-page>
+  <header class="faculty-profile-hero">
+    <div class="faculty-profile-hero-content">
+      <p class="faculty-profile-id"><i class="bi bi-patch-check"></i> ID: PF-2024-15847</p>
+      <h1>{{ user.get_full_name|default:user.username }}</h1>
+      <p class="faculty-profile-role">{{ user.faculty.professor_of|default:'Faculty Member' }}</p>
+      <p class="faculty-profile-tagline">University of Westminster</p>
+
+      <div class="faculty-profile-meta-row">
+        <span><i class="bi bi-geo-alt"></i> {{ user.faculty.campus|default:'Cavendish Campus' }}</span>
+        <span><i class="bi bi-envelope"></i> {{ user.email|default:'faculty@westminster.ac.uk' }}</span>
+      </div>
+
+      <div class="faculty-profile-cta-row">
+        <a href="{% url 'create-job-listing' %}" class="faculty-profile-create-btn">
+          <i class="bi bi-plus-lg"></i><span>Create Job Listing</span>
+        </a>
+        <a href="{% url 'faculty-profile-settings' %}" class="faculty-profile-secondary-btn">
+          <i class="bi bi-gear"></i><span>Edit Profile</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="faculty-profile-overview-grid">
+    <article class="faculty-profile-panel">
+      <h2>About</h2>
+      <div class="portfolio-about-display" data-about-display>
+        <p>{{ user.faculty.profile.bio|default:'Add your professional summary in settings so students can learn more about your work and opportunities.' }}</p>
+      </div>
+
+      <form method="post" class="portfolio-about-form is-hidden" data-about-form>
+        {% csrf_token %}
+        <textarea name="about_me" class="portfolio-about-textarea" rows="6" maxlength="4000" data-about-input placeholder="Share your teaching and professional background...">{{ user.faculty.profile.bio|default_if_none:'' }}</textarea>
+        <p class="portfolio-word-count" data-about-word-count>{{ user.faculty.profile.bio|default_if_none:''|wordcount }} / 500 words</p>
+        <div class="portfolio-about-actions">
+          <button type="submit" name="faculty_about_submit" class="portfolio-inline-save-btn" data-about-save>Submit</button>
+          <button type="button" class="portfolio-inline-cancel-btn" data-about-cancel>Cancel</button>
+        </div>
+      </form>
+
+      <div class="portfolio-about-edit-row">
+        <button type="button" class="portfolio-inline-edit-btn" data-about-edit>
+          <i class="bi bi-pencil"></i><span>Edit</span>
+        </button>
+      </div>
+    </article>
+
+    <article class="faculty-profile-panel faculty-profile-panel-tight">
+      <h2>Quick Stats</h2>
+      <div class="faculty-profile-stat-grid">
+        <div class="faculty-profile-stat-card">
+          <small>Job Listings</small>
+          <strong>{{ jobs|length }}</strong>
+        </div>
+        <div class="faculty-profile-stat-card">
+          <small>Latest Post</small>
+          <strong>
+            {% if jobs %}
+              {{ jobs.0.posted_date|date:'d M Y' }}
+            {% else %}
+              None
+            {% endif %}
+          </strong>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="faculty-profile-section">
+    <div class="faculty-profile-section-header">
+      <h2>My Job Listings</h2>
+      <a href="{% url 'create-job-listing' %}" class="faculty-profile-inline-create"><i class="bi bi-plus-circle"></i><span>Add Job</span></a>
+    </div>
+
+    <div class="faculty-job-card-grid">
+      {% for job in jobs %}
+        <article class="job-card faculty-job-card">
+          <a href="{% url 'faculty-job-detail' job.id %}" class="faculty-job-card-link" aria-label="View {{ job.job_title }} details">
+            <div class="job-content">
+              <div class="job-header">
+                <h3 class="job-title">{{ job.job_title }}</h3>
+                <span class="match-badge">Faculty Post</span>
+              </div>
+
+              <div class="job-meta">
+                <span class="job-meta-item"><i class="bi bi-geo-alt"></i> {{ job.location|default:'Remote' }}</span>
+                <span class="job-meta-item"><i class="bi bi-cash-stack"></i> {% if job.salary %}${{ job.salary }}{% else %}N/A{% endif %}</span>
+                <span class="job-meta-item"><i class="bi bi-calendar-event"></i> {% if job.application_deadline %}Due {{ job.application_deadline|date:'d M Y' }}{% else %}No deadline{% endif %}</span>
+              </div>
+
+              <p class="faculty-job-description">{{ job.description|default:'No description provided.' }}</p>
+
+              <div class="faculty-job-skill-pills" data-faculty-job-skill-pills data-skills-source="{{ job.required_skills_and_tools|default_if_none:'' }}"></div>
+
+              <div class="job-footer">
+                <span class="job-type">Posted {{ job.posted_date|date:'d M Y' }}</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="job-actions faculty-job-actions">
+            <form method="post" action="{% url 'delete-job-listing' job.id %}" data-faculty-job-delete-form data-confirm-title="Delete job listing" data-confirm-message="Delete this job listing?" data-confirm-confirm-text="Delete" data-confirm-confirm-class="btn-danger">
+              {% csrf_token %}
+              <button type="submit" class="action-btn save"><i class="bi bi-trash"></i><span>Delete</span></button>
+            </form>
+          </div>
+        </article>
+      {% empty %}
+        <article class="faculty-jobs-empty-state">
+          <i class="bi bi-briefcase"></i>
+          <h3>No job listings yet</h3>
+          <p>Create your first listing so students can apply.</p>
+          <a href="{% url 'create-job-listing' %}" class="faculty-profile-create-btn"><i class="bi bi-plus-lg"></i><span>Create Job Listing</span></a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</section>
+{% endblock %}

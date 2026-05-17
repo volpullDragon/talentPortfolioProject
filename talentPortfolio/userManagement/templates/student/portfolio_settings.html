@@ -1,0 +1,164 @@
+{# Portfolio Settings template. #}
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}Talented Bank - Student Settings{% endblock %}
+
+{% block content %}
+<div class="settings-page">
+    <a href="{% url 'users-portfolio' %}" class="faculty-job-detail-back-link">
+        <i class="bi bi-arrow-left"></i>
+        <span>Back to Portfolio</span>
+    </a>
+    <header class="settings-header">
+        <div class="settings-header-content">
+            <div class="settings-header-icon"><i class="bi bi-person-gear"></i></div>
+            <h1>Settings</h1>
+            <p>Manage your account preferences and security</p>
+        </div>
+    </header>
+
+    <div class="settings-container">
+        <section class="settings-card">
+            <div class="settings-card-title-row">
+                <i class="bi bi-person"></i>
+                <h2>Profile Information</h2>
+            </div>
+
+            <form method="post" class="settings-form" action="">
+                {% csrf_token %}
+                <div class="settings-form-grid">
+                    <div class="settings-field">
+                        <label for="full_name">Full Name</label>
+                        <input id="full_name" name="full_name" type="text" class="form-control" value="{{ user.get_full_name }}" placeholder="Jordan Rivera">
+                    </div>
+                    <div class="settings-field">
+                        <label for="email">Email Address</label>
+                        <input id="email" name="email" type="email" class="form-control" value="{{ user.email }}" placeholder="w1832382@my.westminster.ac.uk">
+                    </div>
+                    <div class="settings-field">
+                        <label for="campus"><i class="bi bi-geo-alt"></i> Campus</label>
+                        <select id="campus" name="campus" class="form-control select-with-arrow" required>
+                            <option value="">Select your campus</option>
+                            <option value="Cavendish Campus" {% if user.student.campus == 'Cavendish Campus' %}selected{% endif %}>Cavendish Campus</option>
+                            <option value="Harrow Campus" {% if user.student.campus == 'Harrow Campus' %}selected{% endif %}>Harrow Campus</option>
+                            <option value="Marylebone Campus" {% if user.student.campus == 'Marylebone Campus' %}selected{% endif %}>Marylebone Campus</option>
+                            <option value="Regent Campus" {% if user.student.campus == 'Regent Campus' %}selected{% endif %}>Regent Campus</option>
+                        </select>
+                    </div>
+                    <div class="settings-field">
+                        <label for="course"><i class="bi bi-briefcase"></i> Course</label>
+                        <input id="course" name="course" type="text" class="form-control dropdown-field" value="{{ user.student.current_course|default_if_none:'' }}" placeholder="Search your course..." list="westminster-course-list" data-course-source="{% static 'westminster_courses.json' %}" autocomplete="off" required>
+                        <datalist id="westminster-course-list"></datalist>
+                    </div>
+                </div>
+
+                <button type="submit" name="profile_submit" class="btn btn-primary settings-submit-btn">
+                    <i class="bi bi-floppy"></i>
+                    <span>Save Profile Changes</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-card-title-row">
+                <i class="bi bi-lock"></i>
+                <h2>Change Password</h2>
+            </div>
+
+            <form method="post" class="settings-form" action="">
+                {% csrf_token %}
+
+                {% if password_form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for field in password_form %}
+                            {% for error in field.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in password_form.non_field_errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="settings-field">
+                    <label for="id_old_password">Current Password</label>
+                    <input id="id_old_password" name="old_password" type="password" class="form-control" autocomplete="current-password">
+                </div>
+
+                <div class="settings-form-grid">
+                    <div class="settings-field settings-password-field">
+                        <label for="id_new_password1">New Password</label>
+                        <input id="id_new_password1" name="new_password1" type="password" class="form-control" autocomplete="new-password">
+                        <button type="button" class="settings-password-toggle" data-target="id_new_password1" onclick="window.togglePasswordVisibility(this)">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="settings-field settings-password-field">
+                        <label for="id_new_password2">Confirm New Password</label>
+                        <input id="id_new_password2" name="new_password2" type="password" class="form-control" autocomplete="new-password">
+                        <button type="button" class="settings-password-toggle" data-target="id_new_password2" onclick="window.togglePasswordVisibility(this)">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" name="password_submit" class="btn btn-primary settings-submit-btn">
+                    <i class="bi bi-unlock"></i>
+                    <span>Update Password</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-card-title-row">
+                <i class="bi bi-bell"></i>
+                <h2>Notifications</h2>
+            </div>
+
+            <form method="post" class="settings-form" action="">
+                {% csrf_token %}
+
+                <div class="settings-notification-item">
+                    <div class="settings-notification-copy">
+                        <h3>Email Notifications</h3>
+                        <p>Receive email updates about your account</p>
+                    </div>
+                    <label class="settings-switch" for="email_notifications">
+                        <input id="email_notifications" name="email_notifications" class="settings-switch-input" type="checkbox" {% if notification_preferences.email_notifications %}checked{% endif %}>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-notification-item">
+                    <div class="settings-notification-copy">
+                        <h3>Job Alerts</h3>
+                        <p>Get notified about new job opportunities</p>
+                    </div>
+                    <label class="settings-switch" for="job_alerts">
+                        <input id="job_alerts" name="job_alerts" class="settings-switch-input" type="checkbox" {% if notification_preferences.job_alerts %}checked{% endif %}>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-notification-item settings-notification-item-last">
+                    <div class="settings-notification-copy">
+                        <h3>Application Updates</h3>
+                        <p>Receive updates about your job applications</p>
+                    </div>
+                    <label class="settings-switch" for="application_updates">
+                        <input id="application_updates" name="application_updates" class="settings-switch-input" type="checkbox" {% if notification_preferences.application_updates %}checked{% endif %}>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <button type="submit" name="notifications_submit" class="btn btn-primary settings-submit-btn">
+                    <i class="bi bi-floppy"></i>
+                    <span>Save Notification Preferences</span>
+                </button>
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}

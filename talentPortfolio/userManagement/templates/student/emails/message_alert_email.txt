@@ -1,0 +1,12 @@
+Hi {{ recipient_name }},
+
+You have a new message from {{ sender_name }} on Talented Bank.
+
+{% if subject %}Subject: {{ subject }}{% endif %}
+Message:
+{{ body }}
+
+Sign in to reply from your inbox.
+
+Regards,
+Talented Bank Team

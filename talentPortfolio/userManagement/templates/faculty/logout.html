@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags--> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+
+
+<title>{% block title %}Talented Bank - Logout{% endblock %} </title>
+</head>
+<body class="auth-page">
+    <main class="main-container auth-main-container">
+        <div class="form-content auth-form-content my-3 p-3">
+            <div class="container auth-container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card logout-card">
+                            <div class="card-body">
+                            <h5 class="card-title">You have been logged out</h5>
+                            <p class="card-text">
+                                Thanks for your time, contact me for any comments or suggestions using my email address.
+                            </p>
+                            <br><hr><a href="{% url 'faculty-login' %}" class="btn btn-primary">Sign in again</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </main>
+
+    <script src="{% static 'global.js' %}"></script>
+
+<!-- A plugin for password show/hide  -->
+<script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+
+</body>
+</html>

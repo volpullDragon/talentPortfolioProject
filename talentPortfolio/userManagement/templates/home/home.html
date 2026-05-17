@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <title>Home - Talented Bank</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'global.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="home">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-container">
+                <!-- Header -->
+                <div class="header-frame">
+                    <div class="title-container">
+                        <!-- Icon -->
+                        <div class="icon-talent-bank">
+                            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 48 48">
+                                <g id="Icon">
+                                    <path d="M32 42V38C32 35.8783 31.1571 33.8434 29.6569 32.3431C28.1566 30.8429 26.1217 30 24 30H12C9.87827 30 7.84344 30.8429 6.34315 32.3431C4.84285 33.8434 4 35.8783 4 38V42" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+                                    <path d="M32 6.256C33.7155 6.70074 35.2348 7.70253 36.3194 9.10413C37.4039 10.5057 37.9924 12.2278 37.9924 14C37.9924 15.7722 37.4039 17.4943 36.3194 18.8959C35.2348 20.2975 33.7155 21.2993 32 21.744" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+                                    <path d="M44 42V38C43.9987 36.2275 43.4087 34.5055 42.3227 33.1046C41.2368 31.7037 39.7163 30.7031 38 30.26" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+                                    <path d="M18 22C22.4183 22 26 18.4183 26 14C26 9.58172 22.4183 6 18 6C13.5817 6 10 9.58172 10 14C10 18.4183 13.5817 22 18 22Z" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+                                </g>
+                            </svg>
+                        </div>
+                        <!-- Title -->
+                        <h1 class="main-heading">Talent Bank</h1>
+                    </div>
+                    <p class="subtitle">University Talent Management Platform</p>
+                    <p class="description">Connecting academic excellence with professional opportunities at the University of Westminster</p>
+                </div>
+
+                <!-- Portal Cards Grid -->
+                <div class="portal-cards-grid">
+                    <!-- Faculty Portal Card -->
+                    <div class="portal-card">
+                        <div class="portal-card-header faculty-gradient">
+                            <div class="portal-icon">
+                                <svg fill="none" preserveAspectRatio="none" viewBox="0 0 64 64">
+                                    <g id="Icon" opacity="0.9">
+                                        <path d="M42.6667 53.3333V10.6667C42.6667 9.25218 42.1048 7.89562 41.1046 6.89543C40.1044 5.89524 38.7478 5.33333 37.3333 5.33333H26.6667C25.2522 5.33333 23.8956 5.89524 22.8954 6.89543C21.8952 7.89562 21.3333 9.25218 21.3333 10.6667V53.3333" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.33333" />
+                                        <path d="M53.3333 16H10.6667C7.72115 16 5.33333 18.3878 5.33333 21.3333V48C5.33333 50.9455 7.72115 53.3333 10.6667 53.3333H53.3333C56.2789 53.3333 58.6667 50.9455 58.6667 48V21.3333C58.6667 18.3878 56.2789 16 53.3333 16Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.33333" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <h2 class="portal-title">Faculty Portal</h2>
+                            <p class="portal-subtitle">Post opportunities & review talent</p>
+                        </div>
+                        <div class="portal-card-body">
+                            <h3 class="access-title">Access to:</h3>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <svg class="chevron-icon green" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Create and manage job listings</span>
+                                </li>
+                                <li class="feature-item">
+                                    <svg class="chevron-icon green" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Browse qualified student applicants</span>
+                                </li>
+                                <li class="feature-item">
+                                    <svg class="chevron-icon green" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Track applications and schedule interviews</span>
+                                </li>
+                                <li class="feature-item">
+                                    <svg class="chevron-icon green" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Save promising candidates for future roles</span>
+                                </li>
+                            </ul>
+                            <a href="{% url 'faculty-login' %}" class="nav-item nav-link">
+                                <button class="login-button faculty">
+                                Login as Faculty
+                                    <svg class="button-arrow" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Student Portal Card -->
+                    <div class="portal-card">
+                        <div class="portal-card-header student-gradient">
+                            <div class="portal-icon">
+                                <svg fill="none" preserveAspectRatio="none" viewBox="0 0 64 64">
+                                    <g id="Icon" opacity="0.9">
+                                        <path d="M57.12 29.1253C57.5974 28.9147 58.0025 28.5687 58.2852 28.1301C58.5678 27.6916 58.7156 27.1797 58.7102 26.658C58.7048 26.1362 58.5465 25.6275 58.2548 25.1949C57.9631 24.7623 57.551 24.4247 57.0693 24.224L34.2133 13.8133C33.5185 13.4964 32.7637 13.3324 32 13.3324C31.2363 13.3324 30.4815 13.4964 29.7867 13.8133L6.93333 24.2133C6.45858 24.4213 6.05471 24.763 5.77111 25.1968C5.48751 25.6307 5.33647 26.1377 5.33647 26.656C5.33647 27.1743 5.48751 27.6813 5.77111 28.1152C6.05471 28.549 6.45858 28.8907 6.93333 29.0987L29.7867 39.52C30.4815 39.8369 31.2363 40.001 32 40.001C32.7637 40.001 33.5185 39.8369 34.2133 39.52L57.12 29.1253Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.33333" />
+                                        <path d="M58.6667 26.6667V42.6667" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.33333" />
+                                        <path d="M16 33.3333V42.6667C16 44.7884 17.6857 46.8232 20.6863 48.3235C23.6869 49.8238 27.7565 50.6667 32 50.6667C36.2435 50.6667 40.3131 49.8238 43.3137 48.3235C46.3143 46.8232 48 44.7884 48 42.6667V33.3333" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.33333" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <h2 class="portal-title">Student Portal</h2>
+                            <p class="portal-subtitle">Find opportunities & showcase skills</p>
+                        </div>
+                        <div class="portal-card-body">
+                            <h3 class="access-title">Access to:</h3>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <svg class="chevron-icon blue" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Browse and apply to job opportunities</span>
+                                </li>
+                                <li class="feature-item">
+                                    <svg class="chevron-icon blue" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Build and showcase your portfolio</span>
+                                </li>
+                                <li class="feature-item">
+                                    <svg class="chevron-icon blue" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Track applications and interview schedules</span>
+                                </li>
+                                <li class="feature-item">
+                                    <svg class="chevron-icon blue" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                    <span>Get matched with relevant positions</span>
+                                </li>
+                            </ul>
+                            <a href="{% url 'login' %}" class="nav-item nav-link">
+                                <button class="login-button student">
+                                    Login as Student
+                                    <svg class="button-arrow" fill="none" viewBox="0 0 20 20">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66667" />
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2 class="features-heading">Why Join The Talent Bank?</h2>
+            <div class="features-grid">
+                <!-- Smart Matching Card -->
+                <div class="feature-card">
+                    <div class="feature-icon-container blue-bg">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 28 28">
+                            <g id="Icon">
+                                <path d="M18.6667 24.5V22.1667C18.6667 20.929 18.175 19.742 17.2998 18.8668C16.4247 17.9917 15.2377 17.5 14 17.5H7C5.76232 17.5 4.57534 17.9917 3.70017 18.8668C2.825 19.742 2.33333 20.929 2.33333 22.1667V24.5" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                                <path d="M18.6667 3.64933C19.6674 3.90877 20.5536 4.49314 21.1863 5.31074C21.819 6.12834 22.1622 7.13287 22.1622 8.16667C22.1622 9.20046 21.819 10.205 21.1863 11.0226C20.5536 11.8402 19.6674 12.4246 18.6667 12.684" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                                <path d="M25.6667 24.5V22.1667C25.6659 21.1327 25.3217 20.1282 24.6883 19.311C24.0548 18.4938 23.1678 17.9102 22.1667 17.6517" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                                <path d="M10.5 12.8333C13.0773 12.8333 15.1667 10.744 15.1667 8.16667C15.1667 5.58934 13.0773 3.5 10.5 3.5C7.92267 3.5 5.83333 5.58934 5.83333 8.16667C5.83333 10.744 7.92267 12.8333 10.5 12.8333Z" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card-title">Smart Matching</h3>
+                    <p class="feature-card-description">Matching students with opportunities based on skills and interests</p>
+                </div>
+
+                <!-- Seamless Process Card -->
+                <div class="feature-card">
+                    <div class="feature-icon-container purple-bg">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 28 28">
+                            <g id="Icon">
+                                <path d="M18.6667 23.3333V4.66667C18.6667 4.04783 18.4208 3.45434 17.9832 3.01675C17.5457 2.57917 16.9522 2.33333 16.3333 2.33333H11.6667C11.0478 2.33333 10.4543 2.57917 10.0168 3.01675C9.57917 3.45434 9.33333 4.04783 9.33333 4.66667V23.3333" stroke="#9810FA" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                                <path d="M23.3333 7H4.66667C3.378 7 2.33333 8.04467 2.33333 9.33333V21C2.33333 22.2887 3.378 23.3333 4.66667 23.3333H23.3333C24.622 23.3333 25.6667 22.2887 25.6667 21V9.33333C25.6667 8.04467 24.622 7 23.3333 7Z" stroke="#9810FA" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card-title">Seamless Process</h3>
+                    <p class="feature-card-description">Streamlined application and hiring process from initial interest to final offer</p>
+                </div>
+
+                <!-- University Network Card -->
+                <div class="feature-card">
+                    <div class="feature-icon-container green-bg">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 28 28">
+                            <g id="Icon">
+                                <path d="M24.99 12.7423C25.1989 12.6502 25.3761 12.4988 25.4998 12.3069C25.6234 12.1151 25.6881 11.8911 25.6857 11.6629C25.6834 11.4346 25.6141 11.212 25.4865 11.0228C25.3589 10.8335 25.1785 10.6858 24.9678 10.598L14.9683 6.04333C14.6643 5.90467 14.3341 5.83292 14 5.83292C13.6659 5.83292 13.3357 5.90467 13.0317 6.04333L3.03333 10.5933C2.82563 10.6843 2.64894 10.8338 2.52486 11.0236C2.40079 11.2134 2.33471 11.4352 2.33471 11.662C2.33471 11.8888 2.40079 12.1106 2.52486 12.3004C2.64894 12.4902 2.82563 12.6397 3.03333 12.7307L13.0317 17.29C13.3357 17.4287 13.6659 17.5004 14 17.5004C14.3341 17.5004 14.6643 17.4287 14.9683 17.29L24.99 12.7423Z" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                                <path d="M25.6667 11.6667V18.6667" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                                <path d="M7 14.5833V18.6667C7 19.5949 7.7375 20.4852 9.05025 21.1415C10.363 21.7979 12.1435 22.1667 14 22.1667C15.8565 22.1667 17.637 21.7979 18.9497 21.1415C20.2625 20.4852 21 19.5949 21 18.6667V14.5833" stroke="#00A63E" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.33333" />
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card-title">University Network</h3>
+                    <p class="feature-card-description">Exclusive opportunities within the University of Westminster</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-copyright">© 2026 University of Westminster. All rights reserved.</p>
+                <div class="footer-links">
+                                    </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+{# Profile Settings template. #}
+{% extends "home/base.html" %}
+
+{% block title %}Talented Bank - Faculty Settings{% endblock title %}
+
+{% block content %}
+<div class="settings-page">
+    <a href="{% url 'faculty-profile' %}" class="faculty-job-detail-back-link">
+        <i class="bi bi-arrow-left"></i>
+        <span>Back to Profile</span>
+    </a>
+
+    <header class="settings-header">
+        <div class="settings-header-content">
+            <div class="settings-header-icon"><i class="bi bi-shield"></i></div>
+            <h1>Faculty Settings</h1>
+            <p>Manage your account and preferences</p>
+        </div>
+    </header>
+
+    <div class="settings-container">
+        <section class="settings-card">
+            <div class="settings-card-title-row">
+                <i class="bi bi-person"></i>
+                <h2>Profile Information</h2>
+            </div>
+
+            <form method="post" class="settings-form" action="">
+                {% csrf_token %}
+
+                <div class="settings-form-grid">
+                    <div class="settings-field">
+                        <label for="full_name">Full Name</label>
+                        <input id="full_name" name="full_name" type="text" class="form-control" value="{{ user.get_full_name }}" placeholder="Full Name">
+                    </div>
+                    <div class="settings-field">
+                        <label for="username"><i class="bi bi-envelope"></i> Email Address</label>
+                        <input id="username" name="username" type="email" class="form-control" value="{{ user_form.username.value|default:user.username }}" placeholder="faculty@westminster.ac.uk" required>
+                    </div>
+                    <div class="settings-field">
+                        <label for="academic_title">Academic Title</label>
+                        <input id="academic_title" name="academic_title" type="text" class="form-control" value="{{ user.faculty.professor_of }}" placeholder="Professor of Computer Science">
+                    </div>
+                    <div class="settings-field">
+                        <label for="department"><i class="bi bi-building"></i> Department</label>
+                        <input id="department" name="department" type="text" class="form-control" value="Computer Science" placeholder="Department">
+                    </div>
+                </div>
+
+                <div class="settings-field">
+                    <label for="campus">Campus</label>
+                    <input id="campus" name="campus" type="text" class="form-control" value="{{ user.faculty.campus }}" placeholder="Campus">
+                </div>
+
+                <button type="submit" class="btn btn-primary settings-submit-btn">
+                    <i class="bi bi-floppy"></i>
+                    <span>Save Profile Changes</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-card-title-row">
+                <i class="bi bi-lock"></i>
+                <h2>Security &amp; Password</h2>
+            </div>
+
+            <form method="post" class="settings-form" action="">
+                {% csrf_token %}
+
+                {% if password_form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for field in password_form %}
+                            {% for error in field.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in password_form.non_field_errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="settings-field">
+                    <label for="id_old_password">Current Password</label>
+                    <input id="id_old_password" name="old_password" type="password" class="form-control" autocomplete="current-password">
+                </div>
+
+                <div class="settings-form-grid">
+                    <div class="settings-field settings-password-field">
+                        <label for="id_new_password1">New Password</label>
+                        <input id="id_new_password1" name="new_password1" type="password" class="form-control" autocomplete="new-password">
+                        <button type="button" class="settings-password-toggle" data-target="id_new_password1" onclick="window.togglePasswordVisibility(this)">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="settings-field settings-password-field">
+                        <label for="id_new_password2">Confirm New Password</label>
+                        <input id="id_new_password2" name="new_password2" type="password" class="form-control" autocomplete="new-password">
+                        <button type="button" class="settings-password-toggle" data-target="id_new_password2" onclick="window.togglePasswordVisibility(this)">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" name="password_submit" class="btn btn-primary settings-submit-btn">
+                    <i class="bi bi-unlock"></i>
+                    <span>Update Password</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-card-title-row">
+                <i class="bi bi-bell"></i>
+                <h2>Notifications</h2>
+            </div>
+
+            <form class="settings-form" action="" method="post" onsubmit="return false;">
+                <div class="settings-notification-item">
+                    <div class="settings-notification-copy">
+                        <h3>Email Notifications</h3>
+                        <p>Receive email updates about your account</p>
+                    </div>
+                    <label class="settings-switch" for="faculty_email_notifications">
+                        <input id="faculty_email_notifications" name="faculty_email_notifications" class="settings-switch-input" type="checkbox" checked>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-notification-item">
+                    <div class="settings-notification-copy">
+                        <h3>Application Alerts</h3>
+                        <p>Get notified when students apply to your job listings</p>
+                    </div>
+                    <label class="settings-switch" for="faculty_application_alerts">
+                        <input id="faculty_application_alerts" name="faculty_application_alerts" class="settings-switch-input" type="checkbox" checked>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-notification-item">
+                    <div class="settings-notification-copy">
+                        <h3>Weekly Digest</h3>
+                        <p>Receive weekly summary of applications and activity</p>
+                    </div>
+                    <label class="settings-switch" for="faculty_weekly_digest">
+                        <input id="faculty_weekly_digest" name="faculty_weekly_digest" class="settings-switch-input" type="checkbox" checked>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-notification-item settings-notification-item-last">
+                    <div class="settings-notification-copy">
+                        <h3>Interview Reminders</h3>
+                        <p>Reminders for scheduled interviews with applicants</p>
+                    </div>
+                    <label class="settings-switch" for="faculty_interview_reminders">
+                        <input id="faculty_interview_reminders" name="faculty_interview_reminders" class="settings-switch-input" type="checkbox" checked>
+                        <span class="settings-switch-slider"></span>
+                    </label>
+                </div>
+
+                <button type="button" class="btn btn-primary settings-submit-btn">
+                    <i class="bi bi-floppy"></i>
+                    <span>Save Notification Preferences</span>
+                </button>
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock content %}

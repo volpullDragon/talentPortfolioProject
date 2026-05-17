@@ -1,0 +1,56 @@
+{# Conversation template. #}
+{% extends "home/base.html" %}
+
+{% block title %}Talented Bank - Conversation{% endblock %}
+
+{% block content %}
+<section class="conversation-page">
+  <header class="conversation-title-frame">
+    <div class="conversation-title-icon"><i class="bi bi-chat-quote"></i></div>
+    <div>
+      <h1>Conversation</h1>
+      <p>Chat with {{ other_user.get_full_name|default:other_user.username }}</p>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+      <form method="post" action="{% url 'conversation-delete-old' other_user.id %}" data-confirm-message="Delete all read messages in this conversation?">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-danger">Delete old</button>
+      </form>
+      <a href="{% url 'messaging-home' %}" class="conversation-back-link">Back to Inbox</a>
+    </div>
+  </header>
+
+  <section class="conversation-thread-card">
+    <div class="conversation-scroll-area">
+      {% for msg in thread_messages %}
+        <article class="conversation-message {% if msg.sender_id == user.id %}outgoing{% else %}incoming{% endif %}">
+          <div class="conversation-meta">
+            <strong>{{ msg.sender.get_full_name|default:msg.sender.username }}</strong>
+            <small>{{ msg.sent_at|date:"M d, Y H:i" }}</small>
+          </div>
+          {% if msg.subject %}<div class="conversation-subject">{{ msg.subject }}</div>{% endif %}
+          <div class="conversation-body">{{ msg.content|urlize|linebreaksbr }}</div>
+          {% if msg.is_read %}
+            <form method="post" action="{% url 'message-delete' msg.id %}" class="mt-2" data-confirm-message="Delete this message?">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+            </form>
+          {% endif %}
+        </article>
+      {% empty %}
+        <div class="conversation-empty">No messages yet. Start the conversation below.</div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="conversation-compose-card">
+    <h5>Send Message</h5>
+    <form method="post" class="conversation-compose-form">
+      {% csrf_token %}
+      <div>{{ form.subject }}</div>
+      <div>{{ form.content }}</div>
+      <button class="btn btn-primary conversation-send-btn" type="submit"><i class="bi bi-send"></i><span>Send</span></button>
+    </form>
+  </section>
+</section>
+{% endblock %}

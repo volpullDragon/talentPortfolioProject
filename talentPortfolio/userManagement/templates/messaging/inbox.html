@@ -1,0 +1,69 @@
+{# Inbox template. #}
+{% extends "home/base.html" %}
+
+{% block title %}Talented Bank - Inbox{% endblock %}
+
+{% block content %}
+<section class="inbox-page">
+  <header class="inbox-title-frame">
+    <div class="inbox-title-icon"><i class="bi bi-chat-left-text"></i></div>
+    <div>
+      <h1>Messages</h1>
+      <p>Open an existing conversation or start a new one.</p>
+    </div>
+  </header>
+
+  <div class="inbox-layout">
+    <section class="inbox-card">
+      <div class="inbox-card-header"><h5>Recent Conversations</h5><span class="inbox-chip">{{ conversations|length }} active</span></div>
+      {% if conversations %}
+        <div class="inbox-list">
+          {% for convo in conversations %}
+            <a class="inbox-item" href="{% url 'conversation-detail' convo.user.id %}">
+              <div class="inbox-item-top">
+                <strong>
+                  {% if convo.user.faculty %}
+                    Prof {{ convo.user.get_full_name|default:convo.user.username }}
+                  {% else %}
+                    {{ convo.user.get_full_name|default:convo.user.username }}
+                  {% endif %}
+                </strong>
+                <small>{{ convo.latest_message.sent_at|date:"M d, H:i" }}</small>
+              </div>
+              <div class="inbox-item-subject">{{ convo.latest_message.subject|default:"(No subject)" }}</div>
+              {% if convo.unread_count %}
+                <span class="inbox-unread-pill">{{ convo.unread_count }} unread</span>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="inbox-empty-state"><i class="bi bi-chat-left"></i><p>No conversations yet.</p></div>
+      {% endif %}
+    </section>
+
+    <aside class="inbox-card inbox-card-compact">
+      <div class="inbox-card-header"><h5>Start New Conversation</h5></div>
+      <div class="inbox-list">
+        {% for account in available_users %}
+          <a class="inbox-user-item" href="{% url 'conversation-detail' account.id %}">
+            <span class="inbox-user-avatar">{{ account.first_name|slice:":1"|default:account.username|slice:":1" }}{{ account.last_name|slice:":1" }}</span>
+            <span class="inbox-user-copy">
+              <strong>
+                {% if account.faculty %}
+                  Prof {{ account.get_full_name|default:account.username }}
+                {% else %}
+                  {{ account.get_full_name|default:account.username }}
+                {% endif %}
+              </strong>
+              <small>{% if account.faculty %}Faculty{% else %}Student{% endif %}</small>
+            </span>
+          </a>
+        {% empty %}
+          <div class="inbox-empty-state inbox-empty-state-small"><i class="bi bi-people"></i><p>No users found.</p></div>
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+</section>
+{% endblock %}

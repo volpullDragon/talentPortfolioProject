@@ -1,0 +1,163 @@
+{# Portfolio template. #}
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}Talented Bank - Portfolio{% endblock %}
+
+{% block content %}
+<section class="portfolio-page">
+  <header class="portfolio-hero">
+    <div class="portfolio-hero-content">
+      <p class="portfolio-id"><i class="bi bi-person"></i> ID: PF-2024-15847</p>
+      <h1>{{ user.get_full_name|default:user.username }}</h1>
+      <p class="portfolio-role">Student of the University Of Westminster</p>
+      <p class="portfolio-tagline">Looking to secure work with in the university</p>
+
+      <div class="portfolio-meta-row">
+        <span><i class="bi bi-geo-alt"></i> {{ user.student.campus }}</span>
+        <span><i class="bi bi-envelope"></i> {{ user.email|default:'student@my.westminster.ac.uk' }}</span>
+      </div>
+      
+      <a href="{% url 'add-field-of-expertise' %}" class="portfolio-createField-btn"><i class="bi bi-createField"></i><span> Add New Field </span></a>
+    </div>
+  </header>
+
+  <section class="portfolio-overview-grid"> 
+    <article class="portfolio-panel" id="about-me">
+      <h2>About Me</h2>
+
+      <div class="portfolio-about-display" data-about-display>
+        <p>{{ portfolio.about_me|default:'Tell employers about yourself.' }}</p>
+      </div>
+
+      <form method="post" class="portfolio-about-form is-hidden" data-about-form data-preserve-scroll>
+        {% csrf_token %}
+        <input type="hidden" name="scroll_position" value="0" data-scroll-position>
+        <textarea name="about_me" class="portfolio-about-textarea" rows="6" maxlength="4000" data-about-input placeholder="Tell employers about yourself...">{{ portfolio.about_me|default_if_none:'' }}</textarea>
+        <p class="portfolio-word-count" data-about-word-count>{{ portfolio.about_me|default_if_none:''|wordcount }} / 500 words</p>
+        <div class="portfolio-about-actions">
+          <button type="submit" name="about_me_submit" class="portfolio-inline-save-btn" data-about-save>Submit</button>
+          <button type="button" class="portfolio-inline-cancel-btn" data-about-cancel>Cancel</button>
+        </div>
+      </form>
+
+      <div class="portfolio-about-edit-row">
+        <button type="button" class="portfolio-inline-edit-btn" data-about-edit>
+          <i class="bi bi-pencil"></i><span>Edit</span>
+        </button>
+      </div>
+
+      <div class="portfolio-strengths-section" id="what-i-bring">
+        <div class="portfolio-strengths-header">
+          <h3>What I Bring</h3>
+        </div>
+
+        <form method="post" class="portfolio-strength-form is-hidden" data-strength-form data-preserve-scroll>
+          {% csrf_token %}
+          <input type="hidden" name="scroll_position" value="0" data-scroll-position>
+          <input
+            type="text"
+            name="strength_entry"
+            class="portfolio-strength-input"
+            maxlength="80"
+            placeholder="Add a short strength..."
+            data-strength-input
+          >
+          <div class="portfolio-about-actions">
+            <button type="submit" name="what_i_bring_submit" class="portfolio-inline-save-btn" data-strength-save>Submit</button>
+            <button type="button" class="portfolio-inline-cancel-btn" data-strength-cancel>Cancel</button>
+          </div>
+        </form>
+
+        <div class="portfolio-strengths-grid" data-strength-grid>
+          {% for entry in portfolio.what_i_bring_items %}
+            <form method="post" class="portfolio-strength-item" data-preserve-scroll>
+              {% csrf_token %}
+              <input type="hidden" name="scroll_position" value="0" data-scroll-position>
+              <input type="hidden" name="what_i_bring_remove" value="{{ entry }}">
+              <button type="submit" class="portfolio-strength-remove-btn" aria-label="Remove strength">
+                <i class="bi bi-x-lg"></i>
+              </button>
+              <span class="portfolio-strength-pill">{{ entry }}</span>
+            </form>
+          {% empty %}
+            <p class="portfolio-strength-empty">No strengths yet. Add your first one.</p>
+          {% endfor %}
+          <button type="button" class="portfolio-strength-pill portfolio-strength-pill-add" data-strength-open>
+            <i class="bi bi-plus-lg"></i><span>Add Strength</span>
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <article class="portfolio-panel portfolio-panel-tight">
+      <h2>Skilles and Toolbase</h2>
+
+      {% for skill_group in skill_toolbase_groups %}
+      <div class="portfolio-skill-group">
+        <h4>{{ skill_group.title }}</h4>
+        <div class="portfolio-pill-row">
+          {% for item in skill_group.items %}
+          <span>{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% empty %}
+      <p class="portfolio-strength-empty">No skills or tools added yet. Add details in your fields of expertise and projects.</p>
+      {% endfor %}
+    </article>
+  </section>
+
+  <section class="portfolio-section">
+    <h2>Field's of Experience</h2>
+
+    
+    <div class="portfolio-card-grid portfolio-experience-grid">
+      {% for field in fields %}
+        <div class="experience-card-container">
+          <button class="experience-card-star-toggle" data-field-id="{{ field.id }}" data-featured="{% if field.is_featured %}true{% else %}false{% endif %}" aria-label="Toggle featured">
+            <i class="bi {% if field.is_featured %}bi-star-fill{% else %}bi-star{% endif %}"></i>
+          </button>
+          <form method="post" action="{% url 'delete-field-of-expertise' field.id %}" class="experience-card-delete-form" data-confirm-title="Delete field of expertise" data-confirm-message="Delete this field of expertise and all of its projects?" data-confirm-confirm-text="Delete" data-confirm-confirm-class="btn-danger">
+            {% csrf_token %}
+            <button type="submit" class="experience-card-delete-btn" aria-label="Delete field of expertise">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+          <a href="{% url 'see-field-projects' field.id %}" class="experience-card-anchor">
+          <article class="experience-card experience-card-portfolio {% if field.is_featured %}experience-card-featured{% endif %}">
+            <img src="{% static field.image_path %}" alt="{{ field.field_of_expertise }}">
+            <div class="experience-card-body">
+              <div class="experience-card-skill-pills" data-card-skill-pills data-skills-source="{% for project in field.projects.all %}{{ project.skills_demonstrated }}{% if not forloop.last %}; {% endif %}{% endfor %}"></div>
+              <div class="portfolio-pill-row"><span>{{ field.level_of_confidence }}</span></div>
+            </div>
+          </article>
+        </a>
+        </div>
+      {% endfor %}
+
+      <a href="{% url 'add-field-of-expertise' %}" class="experience-card-anchor">
+        <article class="experience-card experience-card-add">
+          <div class="experience-card-add-inner">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+            <h3>Add New Field</h3>
+            <p>Create a new field of expertise for your portfolio.</p>
+          </div>
+        </article>
+      </a>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    <h2>Speciality</h2>
+
+    <div class="speciality-grid">
+      <article class="speciality-card"><i class="bi bi-code-slash"></i><h3>Web Development</h3><p>Full stack web application development using modern frameworks and best practices.</p></article>
+      <article class="speciality-card"><i class="bi bi-phone"></i><h3>Responsive Design</h3><p>Mobile-first, responsive interfaces that work seamlessly across all devices.</p></article>
+      <article class="speciality-card"><i class="bi bi-palette2"></i><h3>UI/UX Design</h3><p>User-centered design solutions from wireframes to high-fidelity prototypes.</p></article>
+      <article class="speciality-card"><i class="bi bi-database"></i><h3>API Development</h3><p>RESTful and GraphQL API design, development, and integration.</p></article>
+      <article class="speciality-card"><i class="bi bi-cloud"></i><h3>Cloud Deployment</h3><p>AWS, Vercel, and other cloud platform deployment and optimization.</p></article>
+      <article class="speciality-card"><i class="bi bi-search"></i><h3>SEO & Performance</h3><p>Website optimization for search engines and lightning-fast performance.</p></article>
+    </div>
+  </section>
+</section>
+{% endblock %}
