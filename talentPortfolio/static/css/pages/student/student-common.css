@@ -1,0 +1,208 @@
+/* Shared student page styling for applications, interviews, job detail, and saved jobs.
+   This file holds the common student dashboard patterns so those routes remain visually consistent without duplicating hero, card, and chip rules.
+   Route-specific refinements should live in the student detail partials when the shared version is no longer enough. */
+.student-applications-page,
+.student-interviews-page,
+.student-job-detail-page,
+.student-saved-jobs-page {
+  width: 100%;
+}
+
+.student-applications-hero,
+.student-interviews-hero,
+.student-job-hero,
+.student-saved-hero {
+  background: linear-gradient(120deg, var(--color-brand-primary-alt) 0%, #7c3aed 58%, #d946ef 100%);
+  border-radius: 12px;
+  color: #fff;
+  padding: 28px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.student-applications-hero h1,
+.student-interviews-hero h1,
+.student-job-hero h1,
+.student-saved-hero h1 {
+  margin: 0 0 8px;
+  font-size: 2.2rem;
+}
+
+.student-app-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.student-app-stat {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.student-app-stat span {
+  display: block;
+  color: var(--color-text-tertiary);
+  font-size: 0.85rem;
+}
+
+.student-app-stat strong {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.student-app-filter-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0 18px;
+}
+
+.student-filter-chip {
+  background: #e2e8f0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.student-filter-chip.is-active {
+  background: #0f172a;
+  color: #fff;
+}
+
+.student-app-list,
+.student-interview-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.student-app-card,
+.student-interview-card,
+.student-job-card,
+.student-empty-card {
+  background: #fff;
+  border: 1px solid #dbe3ef;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.student-app-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.student-app-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  color: var(--color-text-tertiary);
+  font-size: 0.85rem;
+}
+
+.student-app-status {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.status-pending { background: #fef3c7; color: #92400e; }
+.status-under_review { background: #dbeafe; color: var(--color-brand-primary-deep); }
+.status-interview { background: #f3e8ff; color: #7e22ce; }
+.status-offer { background: #dcfce7; color: #166534; }
+.status-accepted { background: #d1fae5; color: #065f46; }
+.status-not_selected { background: #fee2e2; color: #b91c1c; }
+
+.student-interview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.student-interview-type {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+}
+
+.type-video { background: #dbeafe; color: var(--color-brand-primary-deep); }
+.type-phone { background: #dcfce7; color: #166534; }
+.type-in_person { background: #f3e8ff; color: #7e22ce; }
+
+.student-interview-note {
+  margin-top: 8px;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 10px;
+  color: #475569;
+}
+
+.student-interview-actions,
+.student-app-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.student-job-back-link,
+.student-mini-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.student-job-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .student-job-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .student-app-stat-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .student-applications-hero,
+  .student-interviews-hero,
+  .student-job-hero,
+  .student-saved-hero {
+    padding: 18px;
+  }
+
+  .student-applications-hero h1,
+  .student-interviews-hero h1,
+  .student-job-hero h1,
+  .student-saved-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .student-app-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}

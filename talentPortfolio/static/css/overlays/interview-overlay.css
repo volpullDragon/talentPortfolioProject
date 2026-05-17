@@ -1,0 +1,141 @@
+/* Interview overlay styles: fixed modal shell, backdrop, form fields, and responsive panel sizing.
+   This file is responsible for the scheduling dialog used by faculty workflows, including desktop spacing and mobile stack behavior.
+   Overlay rules stay separate from page layouts so the modal can be reused without inheriting unrelated page styling. */
+.interview-overlay-open {
+  overflow: hidden;
+}
+
+.interview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: none;
+}
+
+.interview-overlay.is-open {
+  display: block;
+}
+
+.interview-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.interview-overlay-panel {
+  position: relative;
+  width: min(960px, calc(100% - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  margin: 16px auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.25);
+  border: 1px solid #e5e7eb;
+}
+
+.interview-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.interview-overlay-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+.interview-overlay-close {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.interview-overlay-close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.interview-overlay-form {
+  padding: 20px 24px 24px;
+}
+
+.interview-overlay-alert {
+  margin-bottom: 16px;
+}
+
+.interview-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.interview-form-row-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.interview-form-field label {
+  display: block;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.interview-form-field .form-control,
+.interview-form-field select,
+.interview-form-field textarea,
+.interview-form-field input {
+  width: 100%;
+}
+
+.field-error {
+  margin-top: 6px;
+  color: #b91c1c;
+  font-size: 0.85rem;
+}
+
+.interview-overlay-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .interview-overlay-panel {
+    width: calc(100% - 16px);
+    margin: 8px auto;
+    max-height: calc(100vh - 16px);
+  }
+
+  .interview-overlay-header {
+    padding: 14px 16px;
+  }
+
+  .interview-overlay-form {
+    padding: 14px 16px 18px;
+  }
+
+  .interview-form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .interview-overlay-actions {
+    flex-direction: column-reverse;
+  }
+
+  .interview-overlay-actions .btn {
+    width: 100%;
+  }
+}

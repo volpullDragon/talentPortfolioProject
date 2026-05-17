@@ -1,0 +1,102 @@
+/* Shared layout layer: application shell, navbar, spacing primitives, and wrapper structure.
+   Use this file for the frame that surrounds content, not the content itself: body defaults, nav bar geometry, content width, and responsive shell behavior.
+   Page-specific hero sections, card layouts, and form styling should stay in page partials so the shell remains reusable across routes. */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #fafafa;
+    color: var(--color-text-ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+.app-navbar {
+    display: block !important;
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px clamp(16px, 4vw, 48px);
+    z-index: 100;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 56px;
+    gap: 16px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 500;
+    color: var(--color-text-ink);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.main-container {
+    background: var(--color-surface-muted);
+    padding: 40px;
+    min-height: calc(100vh - 81px);
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.notifications-dropdown-wrapper,
+.profile-dropdown-wrapper {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .app-navbar {
+        padding: 8px 12px;
+    }
+
+    .navbar-container {
+        min-height: 52px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .navbar-icons {
+        gap: 6px;
+    }
+
+    .main-container {
+        padding: 16px;
+    }
+
+    .content-wrapper {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 16px;
+    }
+}

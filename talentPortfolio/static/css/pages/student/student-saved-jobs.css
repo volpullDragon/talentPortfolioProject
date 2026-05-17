@@ -1,0 +1,157 @@
+/* Student saved jobs grid and card styles.
+   Use this stylesheet for the saved job cards, metadata rows, actions, and responsive list/grid behavior on the saved jobs page.
+   Any pattern that becomes shared with other student routes should be promoted to student-common instead of being duplicated here. */
+.student-saved-hero small {
+  opacity: 0.95;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.student-saved-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.student-saved-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid #d9e4f4;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.student-saved-card h3 {
+  margin: 0;
+  font-size: 1.22rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+  padding-right: 86px;
+}
+
+.student-saved-company {
+  margin: -2px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.student-saved-card-actions {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.student-saved-remove,
+.student-saved-open {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid #d7e1ef;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #ffffff;
+  color: #475569;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.student-saved-remove i,
+.student-saved-open i {
+  font-size: 0.95rem;
+}
+
+.student-saved-remove:hover,
+.student-saved-open:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+}
+
+.student-saved-remove:hover {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #be123c;
+}
+
+.student-saved-open:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.student-saved-match {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 0.79rem;
+  font-weight: 800;
+  color: #14532d;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+}
+
+.student-saved-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  color: #475569;
+  font-size: 0.84rem;
+}
+
+.student-saved-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.student-saved-meta i {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.student-saved-description {
+  margin: 2px 0 0;
+  color: #334155;
+  font-size: 0.91rem;
+  line-height: 1.55;
+}
+
+.student-saved-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.student-saved-tags span {
+  font-size: 0.75rem;
+  border: 1px solid #cfe0fb;
+  background: #f2f7ff;
+  color: #1e3a8a;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .student-job-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .student-app-stat-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}
+

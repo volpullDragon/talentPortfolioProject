@@ -1,0 +1,5 @@
+/* Legacy dashboard shell entrypoint: exposes only the shared shell layers for older templates.
+   It intentionally imports the layout and component layers without page-specific dashboard rules.
+   Keep this file as a compatibility bridge rather than a place for new styling. */
+@import url("../layout/layout.css");
+@import url("../components/components.css");

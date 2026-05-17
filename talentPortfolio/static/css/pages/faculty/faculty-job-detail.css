@@ -1,0 +1,283 @@
+/* Faculty job detail styling.
+   This file controls the job detail hero, action area, application summary, and related management UI for faculty users.
+   It should stay focused on the single job detail route so the layout remains easy to reason about. */
+.faculty-job-detail-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 24px 48px;
+}
+
+.faculty-job-detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  margin: 2px 0 16px;
+}
+
+.faculty-job-detail-back-link:hover {
+  color: var(--color-text-strong);
+}
+
+.faculty-job-detail-hero {
+  background: linear-gradient(120deg, #03a64a 0%, #0ea5a4 100%);
+  border-radius: 14px;
+  color: #fff;
+  padding: 34px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.faculty-job-detail-hero h1 {
+  margin: 0;
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 500;
+}
+
+.faculty-job-detail-hero-main > p {
+  margin: 4px 0 0;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.faculty-job-detail-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.faculty-job-detail-meta-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+}
+
+.faculty-job-detail-hero-pill {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 30px;
+  white-space: nowrap;
+}
+
+.faculty-job-detail-layout {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 2fr 0.95fr;
+  gap: 22px;
+}
+
+.faculty-job-detail-main-col,
+.faculty-job-detail-side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.faculty-job-detail-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.faculty-job-detail-card h2 {
+  margin: 0 0 14px;
+  font-size: 38px;
+}
+
+.faculty-job-detail-card h3 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+
+.faculty-job-detail-card p,
+.faculty-job-detail-card li,
+.faculty-job-detail-card a {
+  font-size: 25px;
+}
+
+.faculty-job-detail-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.faculty-job-detail-card ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.faculty-job-detail-card li {
+  color: var(--color-text-secondary);
+}
+
+.faculty-job-detail-card .portfolio-about-form,
+.faculty-job-detail-card .portfolio-about-edit-row {
+  margin-top: 14px;
+}
+
+.faculty-pill-editor {
+  display: grid;
+  gap: 12px;
+}
+
+.faculty-pill-editor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.faculty-pill-editor-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.faculty-pill-editor-controls .portfolio-strength-input {
+  flex: 1 1 auto;
+}
+
+.faculty-pill-editor .portfolio-about-actions {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .faculty-pill-editor-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.faculty-job-detail-edit-btn,
+.faculty-job-detail-delete-btn {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 22px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.faculty-job-detail-edit-btn {
+  background: var(--color-brand-primary-alt);
+  color: #fff;
+}
+
+.faculty-job-detail-edit-btn:hover {
+  background: var(--color-brand-primary-deep);
+  color: #fff;
+}
+
+.faculty-job-detail-delete-btn {
+  background: #fff;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.faculty-job-detail-delete-btn:hover {
+  background: #fef2f2;
+}
+
+.faculty-job-detail-mini-info p {
+  margin: 7px 0;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.faculty-job-detail-applications {
+  background: #ecfdf3;
+  border-color: #bbf7d0;
+}
+
+.faculty-job-detail-applications strong {
+  display: block;
+  font-size: 46px;
+  color: #166534;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.faculty-job-detail-applications a {
+  color: #166534;
+  text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+  .faculty-job-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-job-detail-card h2 {
+    font-size: 30px;
+  }
+
+  .faculty-job-detail-card h3 {
+    font-size: 24px;
+  }
+
+  .faculty-job-detail-card p,
+  .faculty-job-detail-card li,
+  .faculty-job-detail-card a,
+  .faculty-job-detail-edit-btn,
+  .faculty-job-detail-delete-btn,
+  .faculty-job-detail-meta-row span,
+  .faculty-job-detail-hero-pill {
+    font-size: 18px;
+  }
+
+  .faculty-job-detail-applications strong {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .faculty-job-detail-page {
+    padding: 14px 12px 36px;
+  }
+
+  .faculty-job-detail-hero {
+    padding: 22px;
+  }
+
+  .faculty-job-detail-hero-main > p {
+    font-size: 20px;
+  }
+
+  .faculty-job-detail-card {
+    padding: 16px;
+  }
+}
+
+.faculty-job-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.faculty-job-card-link:hover {
+  color: inherit;
+}
+
+.faculty-job-card .job-content {
+  transition: transform 0.15s ease;
+}
+
+.faculty-job-card:hover .job-content {
+  transform: translateY(-2px);
+}
+

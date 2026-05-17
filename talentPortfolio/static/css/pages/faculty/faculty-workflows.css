@@ -1,0 +1,819 @@
+/* Faculty workflow pages: create job, saved students, applicant tracking, and interview schedule.
+   These pages share form layouts, status badges, action buttons, cards, and dashboard-like spacing, so grouping them keeps the cascade easier to understand.
+   If one of these workflows grows into a reusable pattern, extract the shared pieces into components instead of duplicating them here. */
+.faculty-create-job-page,
+.faculty-saved-students-page,
+.faculty-applicant-tracking-page,
+.faculty-interview-schedule-page {
+  width: 100%;
+}
+
+/* ─────────────────── Hero Headers ─────────────────── */
+
+.faculty-create-job-hero,
+.faculty-saved-students-hero,
+.faculty-applicant-hero,
+.faculty-interview-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faculty-create-job-hero,
+.faculty-saved-students-hero,
+.faculty-applicant-hero,
+.faculty-interview-hero {
+  background: linear-gradient(135deg, #00c896 0%, #00a838 100%);
+}
+
+.faculty-saved-students-hero {
+  background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+}
+
+.faculty-applicant-hero {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.faculty-interview-hero {
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+}
+
+.faculty-create-job-hero-content,
+.faculty-saved-students-hero-content,
+.faculty-applicant-hero-content,
+.faculty-interview-hero-content {
+  flex: 1;
+}
+
+.faculty-create-job-hero h1,
+.faculty-saved-students-hero h1,
+.faculty-applicant-hero h1,
+.faculty-interview-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.faculty-create-job-hero p,
+.faculty-saved-students-hero p,
+.faculty-applicant-hero p,
+.faculty-interview-hero p {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.faculty-saved-count,
+.faculty-interview-count {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+
+/* ─────────────────── Create Job Form ─────────────────── */
+
+.faculty-create-job-container {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.faculty-create-job-card {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.faculty-create-job-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.faculty-form-group {
+  margin-bottom: 20px;
+}
+
+.faculty-form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.faculty-form-group label .required {
+  color: #e74c3c;
+}
+
+.faculty-form-group input[type="text"],
+.faculty-form-group input[type="email"],
+.faculty-form-group input[type="date"],
+.faculty-form-group input[type="time"],
+.faculty-form-group input[type="number"],
+.faculty-form-group select,
+.faculty-form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.faculty-form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.faculty-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.faculty-form-group-half {
+  margin-bottom: 0;
+}
+
+.faculty-form-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.form-error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Pill Input Styles */
+
+.faculty-pill-input-wrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.faculty-skill-input,
+.faculty-confidence-input {
+  flex: 1;
+}
+
+.faculty-add-skill-btn,
+.faculty-add-confidence-btn {
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+.faculty-skills-preview,
+.faculty-confidence-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.faculty-skill-pill,
+.faculty-confidence-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.faculty-skill-pill .portfolio-strength-remove-btn,
+.faculty-confidence-pill .portfolio-strength-remove-btn {
+  background: none;
+  border: none;
+  color: #0369a1;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Form Actions */
+
+.faculty-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.faculty-form-actions .btn {
+  flex: 1;
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+/* ─────────────────── Saved Students Grid ─────────────────── */
+
+.faculty-saved-students-container {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.faculty-saved-students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.faculty-student-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s;
+}
+
+.faculty-student-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.faculty-student-card-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.faculty-student-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.faculty-student-info {
+  flex: 1;
+}
+
+.faculty-student-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.faculty-student-course {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.faculty-remove-saved-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+}
+
+.faculty-student-contact {
+  margin: 12px 0;
+  padding: 12px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.faculty-student-contact p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.faculty-student-skills {
+  margin: 12px 0;
+}
+
+.faculty-student-skills strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.faculty-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.faculty-skill-badge {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.faculty-student-actions {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.faculty-student-actions .btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+.faculty-student-notes {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-left: 3px solid #667eea;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.faculty-student-notes strong {
+  color: #333;
+}
+
+/* ─────────────────── Applicant Tracking ─────────────────── */
+
+.faculty-applicant-tracking-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.faculty-applicant-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.faculty-stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.faculty-stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.faculty-stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.faculty-filters {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.faculty-filters h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.faculty-filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.faculty-filter-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.faculty-applicants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faculty-applicant-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.faculty-applicant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.faculty-applicant-info h3 {
+  margin: 0 0 4px 0;
+  color: #333;
+}
+
+.faculty-applicant-info p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.faculty-applicant-email {
+  margin-top: 6px;
+}
+
+.faculty-match-badge {
+  background: #d4edda;
+  color: #155724;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.faculty-applicant-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.faculty-applicant-skills .faculty-skill-badge {
+  background: #e7f3ff;
+  color: #0369a1;
+}
+
+.faculty-applicant-status {
+  margin: 12px 0;
+}
+
+.faculty-status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.faculty-status-new {
+  background: #ffeaa7;
+  color: #d63031;
+}
+
+.faculty-status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.faculty-status-under_review {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.faculty-status-interview {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+.faculty-status-offer {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.faculty-status-not_selected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.faculty-filter-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.faculty-applicant-actions form {
+  display: inline-flex;
+}
+
+.faculty-applicant-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.faculty-applicant-actions .btn {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+}
+
+/* ─────────────────── Interview Schedule ─────────────────── */
+
+.faculty-interview-container {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.faculty-interviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.faculty-interview-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.faculty-interview-type-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.faculty-interview-video {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.faculty-interview-phone {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.faculty-interview-in_person {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.faculty-interview-content {
+  padding-right: 100px;
+}
+
+.faculty-interview-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.faculty-interview-company {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.faculty-interview-datetime {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 8px 0;
+}
+
+.faculty-interview-datetime i {
+  margin-right: 4px;
+}
+
+.faculty-interview-location {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 8px 0;
+}
+
+.faculty-interview-description {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.faculty-interview-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.faculty-interview-actions .btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+/* ─────────────────── Empty State ─────────────────── */
+
+.faculty-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 8px;
+}
+
+.faculty-empty-state i {
+  font-size: 3rem;
+  color: #ddd;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.faculty-empty-state h2 {
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.faculty-empty-state p {
+  color: #999;
+  margin-bottom: 20px;
+}
+
+/* ─────────────────── Next Steps ─────────────────── */
+
+.faculty-next-steps {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 40px 20px;
+  background: #e8f5e9;
+  border-left: 4px solid #388e3c;
+  border-radius: 4px;
+}
+
+.faculty-next-steps h3 {
+  color: #1b5e20;
+  margin-bottom: 16px;
+}
+
+.faculty-next-steps ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #2e7d32;
+}
+
+.faculty-next-steps li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.faculty-next-steps li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.faculty-interview-tips {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 40px 20px;
+  background: #e8f5e9;
+  border-left: 4px solid #388e3c;
+  border-radius: 4px;
+}
+
+.faculty-interview-tips h3 {
+  color: #1b5e20;
+  margin-bottom: 16px;
+}
+
+.faculty-interview-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #2e7d32;
+}
+
+.faculty-interview-tips li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.faculty-interview-tips li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* ─────────────────── Responsive ─────────────────── */
+
+@media (max-width: 768px) {
+  .faculty-create-job-hero,
+  .faculty-saved-students-hero,
+  .faculty-applicant-hero,
+  .faculty-interview-hero {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faculty-create-job-hero h1,
+  .faculty-saved-students-hero h1,
+  .faculty-applicant-hero h1,
+  .faculty-interview-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .faculty-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-saved-students-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-interviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-stat-card {
+    min-width: 0;
+  }
+
+  .faculty-form-actions {
+    flex-direction: column;
+  }
+
+  .faculty-form-actions .btn {
+    flex: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .faculty-create-job-card {
+    padding: 16px;
+  }
+
+  .faculty-pill-input-wrapper {
+    flex-direction: column;
+  }
+
+  .faculty-add-skill-btn,
+  .faculty-add-confidence-btn {
+    width: 100%;
+  }
+
+  .faculty-applicant-header {
+    flex-direction: column;
+  }
+
+  .faculty-applicant-actions {
+    flex-direction: column;
+  }
+
+  .faculty-applicant-actions .btn {
+    width: 100%;
+  }
+
+  .faculty-interview-actions {
+    flex-direction: column;
+  }
+
+  .faculty-interview-actions .btn {
+    width: 100%;
+  }
+}

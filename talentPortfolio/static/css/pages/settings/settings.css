@@ -1,0 +1,291 @@
+/* Settings page styling for account preferences, toggles, and form sections.
+   This file handles tabbed panels, option rows, switch-like controls, and spacing used across the settings experience.
+   Keep the settings UI isolated so it does not inherit unrelated dashboard or portfolio assumptions. */
+.settings-page {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-surface-muted);
+}
+
+.settings-header {
+    background: linear-gradient(90deg, #7b2cff 0%, #ef0ea8 100%);
+    border-radius: 14px;
+    padding: 72px 24px 70px; color: #fff;
+    }
+
+.settings-header-content {
+    width: 100%; max-width: 1280px;
+    margin: 0 auto; 
+    }
+
+.settings-header-icon {
+    font-size: 38px;
+    line-height: 1;
+    margin-bottom: 8px; 
+    }
+
+.settings-header h1 {
+    margin: 0; 
+    font-size: clamp(36px, 4.2vw, 56px); 
+    font-weight: 500; 
+    letter-spacing: -0.5px; 
+    }
+    
+.settings-header p {
+    margin: 6px 0 0; 
+    font-size: clamp(19px, 2.2vw, 32px); 
+    font-weight: 400; 
+    opacity: 0.95; 
+    }
+
+.settings-container {
+    width: 100%; 
+    max-width: 1280px; 
+    margin: 48px auto; 
+    padding: 0 24px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 28px; 
+    }
+
+.settings-card {
+background: #fff;
+border: 1px solid var(--color-border);
+border-radius: 16px;
+padding: 32px;
+}
+
+.settings-card-title-row {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 22px;
+}
+
+.settings-card-title-row i {
+color: var(--color-brand-primary);
+font-size: 26px;
+}
+
+.settings-card-title-row h2 {
+margin: 0;
+color: var(--color-text-strong);
+font-size: clamp(24px, 2.4vw, 38px);
+font-weight: 500;
+}
+
+.settings-form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.settings-form-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 18px;
+}
+
+.settings-field label {
+display: flex;
+align-items: center;
+gap: 6px;
+margin-bottom: 8px;
+color: var(--color-text-secondary);
+font-size: 18px;
+font-weight: 500;
+}
+
+.settings-field .form-control {
+min-height: 54px;
+border-radius: 12px;
+border: 1px solid #d1d5db;
+font-size: clamp(15px, 1.8vw, 24px);
+color: var(--color-text-strong);
+padding: 10px 16px;
+box-shadow: none;
+}
+
+.settings-field .form-control:focus {
+border-color: var(--color-brand-primary-alt);
+box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.settings-field textarea.form-control {
+min-height: 140px;
+resize: vertical;
+}
+
+.settings-password-field {
+position: relative;
+}
+
+.settings-password-field .form-control {
+padding-right: 48px;
+}
+
+.settings-password-toggle {
+position: absolute;
+right: 12px;
+bottom: 12px;
+border: 0;
+background: transparent;
+color: var(--color-text-tertiary);
+width: 28px;
+height: 28px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+border-radius: 8px;
+cursor: pointer;
+}
+
+.settings-password-toggle:hover {
+background: var(--color-surface-muted);
+color: var(--color-text-secondary);
+}
+
+.settings-submit-btn {
+width: 100%;
+min-height: 54px;
+border-radius: 12px;
+font-size: clamp(14px, 1.7vw, 22px);
+font-weight: 500;
+display: inline-flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+
+.settings-notification-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 18px;
+padding: 4px 0 18px;
+border-bottom: 1px solid var(--color-border);
+}
+
+.settings-notification-item-last {
+margin-bottom: 2px;
+}
+
+.settings-notification-copy h3 {
+margin: 0;
+font-size: clamp(18px, 1.9vw, 25px);
+font-weight: 500;
+color: var(--color-text-strong);
+}
+
+.settings-notification-copy p {
+margin: 6px 0 0;
+color: var(--color-text-tertiary);
+font-size: clamp(13px, 1.5vw, 20px);
+}
+
+.settings-switch {
+position: relative;
+width: 62px;
+height: 34px;
+flex-shrink: 0;
+}
+
+.settings-switch-input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.settings-switch-slider {
+position: absolute;
+inset: 0;
+background: #d1d5db;
+border-radius: 999px;
+transition: 0.25s ease;
+cursor: pointer;
+}
+
+.settings-switch-slider::before {
+content: "";
+position: absolute;
+width: 28px;
+height: 28px;
+left: 3px;
+top: 3px;
+border-radius: 50%;
+background: #fff;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+transition: 0.25s ease;
+}
+
+.settings-switch-input:checked + .settings-switch-slider {
+background: var(--color-brand-primary-alt);
+}
+
+.settings-switch-input:checked + .settings-switch-slider::before {
+transform: translateX(28px);
+}
+
+@media (max-width: 991px) {
+  .settings-page {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  .settings-header {
+    padding-top: 48px;
+    padding-bottom: 46px;
+  }
+
+  .settings-container {
+    margin-top: 28px;
+    padding: 0 16px;
+  }
+
+  .settings-card {
+    padding: 20px;
+  }
+
+  .settings-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .settings-notification-item {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .settings-page {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  .settings-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .settings-container {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    padding: 0 12px;
+    gap: 16px;
+  }
+
+  .settings-card {
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .settings-card-title-row {
+    margin-bottom: 14px;
+  }
+
+  .settings-notification-item {
+    gap: 10px;
+  }
+}
+

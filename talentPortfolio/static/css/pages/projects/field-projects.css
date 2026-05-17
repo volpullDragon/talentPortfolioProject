@@ -1,0 +1,566 @@
+/* Field projects listing and confidence tracking styles.
+   Use this stylesheet for the grouped project cards, themed accents, confidence slider treatment, and field-specific project grid.
+   It keeps the field project experience visually distinct from the rest of the portfolio area. */
+.field-projects-page {
+    gap: 22px;
+}
+
+.field-projects-hero {
+    border: none;
+}
+
+.field-projects-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.field-projects-count {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid #bfdbfe;
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field-projects-grid {
+    align-items: stretch;
+}
+
+.field-project-card {
+    min-height: 100%;
+    border: 1px solid #d9e2f5;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.field-project-card:hover,
+.field-project-card:focus-within {
+    transform: translateY(-2px);
+    border-color: #a7c4ff;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12);
+}
+
+.field-project-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.field-project-card-head h3 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.field-project-card-head .bi {
+    color: #2563eb;
+    font-size: 18px;
+}
+
+.field-project-label {
+    margin: 12px 0 2px;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.field-project-value {
+    margin: 0 0 12px;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.field-project-placeholder-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.field-project-placeholder-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field-project-placeholder-block {
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    background: #f8fafc;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+.field-project-placeholder-block h4 {
+    margin: 0 0 4px;
+    font-size: 13px;
+    color: #334155;
+    font-weight: 700;
+}
+
+.field-project-placeholder-block p {
+    margin: 0;
+    font-size: 12px;
+    color: #475569;
+}
+
+.field-project-add-card {
+    min-height: 100%;
+}
+
+.field-projects-empty {
+    grid-column: 1 / -1;
+    border: 1px dashed #bfdbfe;
+    background: #eff6ff;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    color: #1e3a8a;
+}
+
+.field-projects-empty i {
+    font-size: 24px;
+}
+
+.field-projects-empty h3 {
+    margin: 10px 0 4px;
+    font-size: 20px;
+}
+
+.field-projects-empty p {
+    margin: 0;
+    color: #334155;
+}
+
+.field-project-card.is-ready {
+    animation: fieldCardIn 0.35s ease forwards;
+}
+
+@keyframes fieldCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .field-projects-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .field-project-card-head h3 {
+        font-size: 16px;
+    }
+}
+
+/* Field page enhancements: themed accents, confidence tracker, and skill chips */
+.field-projects-page {
+    --field-accent-start: #2563eb;
+    --field-accent-end: #1d4ed8;
+    --field-accent: var(--field-accent-end);
+    --field-accent-soft: #dbeafe;
+    --field-accent-deep: #1e3a8a;
+    gap: 24px;
+}
+
+.field-projects-hero {
+    border: 1px solid color-mix(in srgb, var(--field-accent-end) 22%, transparent);
+    background: linear-gradient(138deg, var(--field-accent-start) 0%, color-mix(in srgb, var(--field-accent-start) 35%, var(--field-accent-end) 65%) 52%, var(--field-accent-end) 100%);
+    box-shadow: 0 14px 30px color-mix(in srgb, var(--field-accent-end) 28%, transparent);
+    color: #ffffff;
+}
+
+.field-projects-hero .portfolio-id,
+.field-projects-hero .portfolio-role,
+.field-projects-hero .portfolio-meta-row {
+    color: color-mix(in srgb, #ffffff 88%, var(--field-accent-soft) 12%);
+}
+
+.field-projects-hero .field-projects-back-btn,
+.field-projects-hero .portfolio-createField-btn {
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+}
+
+.field-projects-hero .field-projects-back-btn:hover,
+.field-projects-hero .portfolio-createField-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+.field-projects-top-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 4px;
+}
+
+.field-projects-hero-actions {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.field-projects-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 14px;
+}
+
+.field-projects-back-btn:hover,
+.field-projects-back-btn:focus {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+.field-projects-back-btn-top {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+.field-projects-back-btn-top:hover,
+.field-projects-back-btn-top:focus {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.projects-add-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 14px;
+}
+
+.projects-add-back-btn:hover,
+.projects-add-back-btn:focus {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+.projects-add-back-btn-top {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+.projects-add-back-btn-top:hover,
+.projects-add-back-btn-top:focus {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.field-projects-add-btn {
+    border-color: var(--field-accent-soft);
+    color: var(--field-accent-deep);
+}
+
+.field-projects-overview {
+    align-items: start;
+}
+
+.field-confidence-card,
+.field-skills-card {
+    border-color: color-mix(in srgb, var(--field-accent) 18%, #d1d5db);
+}
+
+.field-confidence-description {
+    color: #475569;
+}
+
+.field-confidence-head {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.field-confidence-label {
+    font-size: 13px;
+    color: #334155;
+    font-weight: 600;
+}
+
+.field-confidence-percent {
+    font-size: 18px;
+    color: var(--field-accent-deep);
+}
+
+.field-confidence-track {
+    position: relative;
+    isolation: isolate;
+    margin-top: 10px;
+    height: 12px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: visible;
+}
+
+.field-confidence-fill {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--field-accent-start) 74%, #ffffff) 0%, var(--field-accent-end) 100%);
+    transition: width 0.25s ease;
+}
+
+.field-confidence-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: 100%;
+    height: 12px;
+    margin: 0;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.field-confidence-slider::-webkit-slider-runnable-track {
+    height: 12px;
+    background: transparent;
+}
+
+.field-confidence-slider::-moz-range-track {
+    height: 12px;
+    background: transparent;
+    border: 0;
+}
+
+.field-confidence-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 3px solid var(--field-accent-end);
+    background: #ffffff;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--field-accent-end) 30%, transparent);
+    margin-top: -3px;
+}
+
+.field-confidence-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 3px solid var(--field-accent-end);
+    background: #ffffff;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--field-accent-end) 30%, transparent);
+}
+
+.field-confidence-update-row {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.field-confidence-selected {
+    margin: 0;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.field-confidence-autosave {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.field-skills-job-list {
+    margin-top: 6px;
+    display: grid;
+    gap: 10px;
+}
+
+.field-skills-job-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px;
+    background: #ffffff;
+}
+
+.field-skills-job-item h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.field-skills-job-item p {
+    margin: 6px 0 8px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.field-skills-empty {
+    margin: 0;
+    color: #64748b;
+}
+
+.field-skills-pill-row,
+.field-project-placeholder-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.field-skill-pill,
+.field-project-placeholder-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--field-accent) 35%, #bfdbfe);
+    background: color-mix(in srgb, var(--field-accent-soft) 72%, #ffffff);
+    color: var(--field-accent-deep);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field-project-card {
+    min-height: 100%;
+    border: 1px solid #d9e2f5;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-left: 4px solid var(--field-accent);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.field-project-card:hover,
+.field-project-card:focus-within {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--field-accent) 38%, #a7c4ff);
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--field-accent-end) 16%, transparent);
+}
+
+.field-project-card-head .bi {
+    color: var(--field-accent);
+}
+
+.field-project-value {
+    color: var(--field-accent-deep);
+}
+
+.field-project-summary {
+    margin: 0 0 12px;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+    .field-projects-top-actions {
+        width: 100%;
+    }
+
+    .field-projects-back-btn-top {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .field-projects-hero-actions {
+        width: 100%;
+    }
+
+    .field-projects-add-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Field projects cards aligned to portfolio field cards */
+.field-project-card {
+    border-left: 0;
+}
+
+.field-project-card .field-project-card-body {
+    padding: 10px;
+    display: grid;
+    gap: 8px;
+}
+
+.field-project-card .field-project-card-head {
+    margin: 0;
+}
+
+.field-project-card .field-project-card-head h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #212529;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.field-project-card .field-project-card-head .bi {
+    font-size: 18px;
+}
+
+.field-project-card .field-project-label {
+    margin: 4px 0 2px;
+}
+
+.field-project-card .field-project-value {
+    margin: 0;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field-project-card .field-project-placeholder-row {
+    margin: 0;
+}
+
+.field-project-card .field-project-placeholder-pill {
+    padding: 3px 8px;
+    font-size: 11px;
+}
+

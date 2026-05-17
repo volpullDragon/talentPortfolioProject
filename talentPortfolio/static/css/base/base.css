@@ -1,0 +1,43 @@
+/* Base layer: global tokens, low-level resets, and browser-normalized defaults.
+   This file should stay strictly foundational: colors, gradients, typography defaults, box sizing, form element inheritance, and image/svg behavior.
+   Any component styling, page layout, or feature-specific rules belong in higher layers so the foundation remains stable and reusable. */
+html {
+    scroll-behavior: auto !important;
+}
+
+:root {
+    --color-brand-primary: #155dfc;
+    --color-brand-secondary: #8200db;
+    --color-brand-success: #00a63e;
+    --color-brand-primary-alt: #2563eb;
+    --color-brand-primary-deep: #1d4ed8;
+    --color-surface-muted: #f3f4f6;
+    --color-surface-subtle: #f8fafc;
+    --color-border: #e5e7eb;
+    --color-text-ink: #0a0a0a;
+    --color-text-strong: #101828;
+    --color-text-secondary: #4a5565;
+    --color-text-tertiary: #6a7282;
+    --gradient-home-surface: linear-gradient(128.962deg, rgb(239, 246, 255) 0%, rgb(250, 245, 255) 50%, rgb(253, 242, 248) 100%);
+    --gradient-home-hero: linear-gradient(143.519deg, rgba(21, 93, 252, 0.1) 0%, rgba(152, 16, 250, 0.1) 100%);
+    --gradient-brand-horizontal: linear-gradient(90deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}

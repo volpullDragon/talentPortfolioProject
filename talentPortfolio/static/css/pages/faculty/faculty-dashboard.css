@@ -1,0 +1,235 @@
+/* Faculty dashboard styling for summary cards, candidate lists, and dashboard-level workflows.
+   Keep faculty overview cards, stats, and candidate surfaces here because they are specific to the faculty route.
+   Shared shell behavior and reusable UI primitives should continue to live in the layout and components layers. */
+.faculty-dashboard-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.faculty-dashboard-page .dashboard-container {
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.faculty-dashboard-page .stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.faculty-dashboard-page .stat-card {
+  min-width: 0;
+}
+
+.faculty-dashboard-hero {
+  margin-bottom: 0;
+  background: linear-gradient(156.468deg, rgb(0, 201, 80) 0%, rgb(0, 153, 102) 100%);
+  box-shadow: 0px 10px 25px rgba(0, 153, 102, 0.2);
+}
+
+.faculty-candidate-card {
+  border: 1px solid #dbe6f5;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.faculty-candidate-card .match-badge {
+  background: #ecfdf3;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+
+.faculty-candidate-card .faculty-match-badge {
+  position: relative;
+  cursor: help;
+}
+
+.faculty-match-breakdown-popover {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+  transform: translateX(-50%) translateY(-6px);
+  width: min(300px, 78vw);
+  border-radius: 12px;
+  border: 1px solid #cfe4ff;
+  background: #ffffff;
+  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+  padding: 10px 12px;
+  display: grid;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 20;
+}
+
+.faculty-match-breakdown-popover::before {
+  content: '';
+  position: absolute;
+  left: calc(50% - 8px);
+  top: -8px;
+  width: 14px;
+  height: 14px;
+  border-left: 1px solid #cfe4ff;
+  border-top: 1px solid #cfe4ff;
+  background: #ffffff;
+  transform: rotate(45deg);
+}
+
+.faculty-match-badge:hover .faculty-match-breakdown-popover,
+.faculty-match-badge:focus .faculty-match-breakdown-popover,
+.faculty-match-badge:focus-within .faculty-match-breakdown-popover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.faculty-match-breakdown-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.faculty-match-breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: #334155;
+}
+
+.faculty-match-breakdown-row strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.faculty-candidate-job-fit {
+  margin-top: 10px;
+}
+
+.faculty-candidate-skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.faculty-candidate-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.faculty-candidate-actions {
+  align-items: center;
+}
+
+.faculty-candidate-actions .action-btn.save {
+  min-width: 44px;
+}
+
+.faculty-candidate-actions a.action-btn {
+  text-decoration: none;
+}
+
+.faculty-candidate-actions a.action-btn.save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: auto;
+  min-width: 112px;
+  padding: 9px 12px;
+}
+
+.faculty-candidate-actions form {
+  margin: 0;
+}
+
+
+.faculty-search-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+
+.faculty-search-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+  flex: 1 1 220px;
+}
+
+.faculty-search-control label {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.faculty-search-control .form-control {
+  width: 100%;
+}
+
+.faculty-candidates-empty {
+  border-style: dashed;
+}
+
+@media (max-width: 768px) {
+  .faculty-dashboard-hero .search-container {
+    width: 100%;
+  }
+
+  .faculty-candidate-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .faculty-candidate-actions a.action-btn.save {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .faculty-dashboard-page .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-dashboard-page .stats-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+
+  .faculty-search-controls {
+    gap: 10px;
+  }
+
+  .faculty-search-control {
+    min-width: 100%;
+    flex-basis: 100%;
+  }
+  .faculty-dashboard-page {
+    gap: 18px;
+  }
+
+  .faculty-dashboard-page .stats-container {
+    grid-template-columns: 1fr;
+  }
+}
+

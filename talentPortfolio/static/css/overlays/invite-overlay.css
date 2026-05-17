@@ -1,0 +1,178 @@
+/* Invite overlay styles: modal shell and form treatment for contact / invitation flows.
+   Keep the dialog structure, spacing, validation-friendly form styling, and action buttons here.
+   This separation avoids mixing modal concerns into page-level layout files. */
+.invite-overlay-open {
+  overflow: hidden;
+}
+
+[data-invite-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: 2300;
+  display: none;
+}
+
+[data-invite-overlay].is-open {
+  display: block;
+}
+
+.invite-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.invite-overlay-panel {
+  position: relative;
+  width: min(640px, calc(100% - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  margin: 16px auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.25);
+  border: 1px solid #e5e7eb;
+}
+
+.invite-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.invite-overlay-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+.invite-overlay-close {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.invite-overlay-close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.invite-overlay-form {
+  padding: 20px 24px 24px;
+}
+
+.invite-form-row {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.invite-form-row label {
+  display: block;
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.9rem;
+}
+
+.invite-form-row select,
+.invite-form-row textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.invite-form-row select:focus,
+.invite-form-row textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.invite-form-row textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.invite-char-count {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.invite-overlay-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.invite-overlay-actions .btn {
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.invite-overlay-actions .btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.invite-overlay-actions .btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.invite-overlay-actions .btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.invite-overlay-actions .btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 640px) {
+  .invite-overlay-panel {
+    width: calc(100% - 16px);
+    margin: 8px auto;
+    max-height: calc(100vh - 16px);
+  }
+
+  .invite-overlay-header {
+    padding: 14px 16px;
+  }
+
+  .invite-overlay-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .invite-overlay-form {
+    padding: 14px 16px 18px;
+  }
+
+  .invite-overlay-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .invite-overlay-actions .btn {
+    width: 100%;
+  }
+}

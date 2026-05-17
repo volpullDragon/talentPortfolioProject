@@ -1,0 +1,342 @@
+/* Shared component layer: reusable UI primitives that appear across multiple views.
+   Buttons, avatars, badges, menus, dropdowns, and notification surfaces live here because they are not tied to one page.
+   If a rule begins to depend on a specific page layout, move it out of this file to keep the component layer generic and predictable. */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--color-brand-primary);
+    border: 1px solid var(--color-brand-primary);
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #f0f7ff;
+}
+
+.icon-button {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    background: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex: 0 0 38px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.icon-button:hover {
+    background-color: var(--color-surface-muted);
+}
+
+.icon-button:focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
+}
+
+.icon-button .bi {
+    font-size: 19px;
+    line-height: 1;
+    color: var(--color-text-secondary);
+}
+
+.icon-button i {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-text-secondary);
+}
+
+.icon-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-text-secondary);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    background: #fb2c36;
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    border: 1px solid #ffffff;
+}
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 25% 20%, #4f46e5 0%, var(--color-brand-primary-deep) 52%, #6d28d9 100%);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1;
+    letter-spacing: 0.15px;
+    box-shadow: 0 10px 20px rgba(76, 29, 149, 0.28);
+}
+
+.profile-toggle {
+    width: auto;
+    height: auto;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    border: 1px solid #dbe1f2;
+    background: linear-gradient(145deg, #f7f8ff 0%, #eff2ff 100%);
+    padding: 0;
+    box-shadow: 0 10px 24px rgba(76, 29, 149, 0.16);
+}
+
+.profile-toggle:hover {
+    background: linear-gradient(145deg, #f3f5ff 0%, #e9ecff 100%);
+}
+
+.profile-trigger-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px 8px 8px;
+}
+
+.profile-trigger-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.profile-trigger-name {
+    color: #111827;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.1;
+    max-width: 190px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-trigger-role {
+    color: #4b5563;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.profile-trigger-chevron {
+    color: #7e22ce;
+    font-size: 15px;
+    transition: transform 0.2s ease;
+}
+
+.profile-toggle[aria-expanded="true"] .profile-trigger-chevron {
+    transform: rotate(180deg);
+}
+
+.notifications-dropdown {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    width: 340px;
+    max-height: 420px;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+    padding: 12px;
+    z-index: 250;
+    display: none;
+}
+
+.notifications-dropdown.is-open {
+    display: block;
+}
+
+.dropdown-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dropdown-header-row h4 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.dropdown-header-row a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #155dfc;
+}
+
+.dropdown-section {
+    margin-bottom: 10px;
+}
+
+.dropdown-section:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.dropdown-item-link {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 6px;
+    background: #f8fafc;
+}
+
+.dropdown-item-link strong {
+    color: #111827;
+    font-size: 12px;
+}
+
+.dropdown-item-link span {
+    color: #4b5563;
+    font-size: 12px;
+}
+
+.dropdown-item-link:hover {
+    background: #eef2ff;
+}
+
+.dropdown-empty {
+    font-size: 12px;
+    color: #6b7280;
+    padding: 8px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+    .notifications-dropdown {
+        width: 300px;
+        right: -8px;
+    }
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
+    padding: 8px;
+    z-index: 250;
+    display: none;
+}
+
+.profile-dropdown.is-open {
+    display: block;
+}
+
+.profile-dropdown-link,
+.profile-dropdown-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    text-align: left;
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: #111827;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.profile-dropdown-link .bi,
+.profile-dropdown-button .bi {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.profile-dropdown-link:hover,
+.profile-dropdown-button:hover {
+    background: #f3f4f6;
+}
+
+.profile-dropdown-divider {
+    height: 1px;
+    margin: 8px 6px;
+    background: #e5e7eb;
+}
+
+.profile-logout-form {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .profile-toggle {
+        width: auto;
+        height: auto;
+        flex-basis: auto;
+    }
+
+    .profile-trigger-card {
+        gap: 8px;
+        padding: 6px 9px 6px 6px;
+    }
+
+    .profile-trigger-copy {
+        display: none;
+    }
+
+    .avatar {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+}

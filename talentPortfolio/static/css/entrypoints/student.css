@@ -1,0 +1,8 @@
+/* Student entrypoint: bundles the shared shell layers with the student page partials.
+   The goal is to give student routes a single stylesheet entry while still preserving a layered cascade.
+   Like the other entrypoints, this file should stay declarative and should not contain actual style rules. */
+@import url("../layout/layout.css");
+@import url("../components/components.css");
+@import url("../pages/student/student-common.css");
+@import url("../pages/student/student-job-detail.css");
+@import url("../pages/student/student-saved-jobs.css");

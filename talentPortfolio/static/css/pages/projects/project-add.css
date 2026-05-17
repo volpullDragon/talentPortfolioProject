@@ -1,0 +1,333 @@
+/* Project creation form and upload helpers.
+   This file owns the add-project form layout, drop zone treatment, tag chips, and supporting form interactions for project creation.
+   Keeping these rules together makes the upload and compose flow easier to maintain. */
+.add-project-page {
+    gap: 22px;
+    --ap-accent-start: #6d28d9;
+    --ap-accent-end: #db2777;
+    --ap-surface: #ffffff;
+    --ap-border: #dbe3f0;
+    --ap-text: #0f172a;
+    --ap-subtle: #64748b;
+}
+
+.add-project-hero {
+    border-radius: 14px;
+    padding: 26px 28px;
+    color: #ffffff;
+    background: linear-gradient(90deg, var(--ap-accent-start) 0%, var(--ap-accent-end) 100%);
+    box-shadow: 0 14px 28px rgba(109, 40, 217, 0.24);
+}
+
+.add-project-hero h1 {
+    margin: 0;
+    font-size: clamp(34px, 4.3vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.add-project-hero p {
+    margin: 10px 0 0;
+    font-size: clamp(16px, 1.6vw, 23px);
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.add-project-card {
+    margin: 24px auto 18px;
+    width: min(66.67%, 100%);
+    border: 1px solid var(--ap-border);
+    border-radius: 14px;
+    background: var(--ap-surface);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    padding: 26px 24px;
+}
+
+.add-project-form {
+    display: grid;
+    gap: 12px;
+}
+
+.add-project-label {
+    margin-top: 8px;
+    margin-bottom: 0;
+    color: #334155;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.add-project-form .form-control {
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    min-height: 64px;
+    font-size: 28px;
+    padding: 12px 16px;
+}
+
+.add-project-form textarea.form-control {
+    min-height: 190px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.add-project-counter {
+    margin: -4px 0 4px;
+    color: #64748b;
+    font-size: 24px;
+}
+
+.add-project-counter.is-over {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.add-project-chip-group {
+    margin-top: 8px;
+    display: grid;
+    gap: 12px;
+}
+
+.add-project-chip-entry-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+}
+
+.add-project-chip-add {
+    border-radius: 12px;
+    background: linear-gradient(90deg, #7c3aed 0%, #9333ea 100%);
+    color: #ffffff;
+    min-width: 120px;
+    min-height: 64px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.add-project-chip-add:hover,
+.add-project-chip-add:focus {
+    color: #ffffff;
+    filter: brightness(1.04);
+}
+
+.add-project-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 34px;
+}
+
+.add-project-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #4c1d95;
+    background: #ede9fe;
+    border: 1px solid #c4b5fd;
+}
+
+.add-project-chip-remove {
+    border: 0;
+    background: transparent;
+    color: #7c3aed;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+.add-project-upload-wrap {
+    margin-top: 8px;
+}
+
+.add-project-upload-zone {
+    display: grid;
+    place-items: center;
+    gap: 6px;
+    text-align: center;
+    border: 2px dashed #94a3b8;
+    border-radius: 12px;
+    padding: 32px 18px;
+    color: #475569;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    font-size: 24px;
+}
+
+.add-project-upload-zone i {
+    font-size: 36px;
+    color: #64748b;
+}
+
+.add-project-upload-zone small {
+    color: #64748b;
+    font-size: 19px;
+}
+
+.add-project-upload-zone.is-dragging,
+.add-project-upload-zone:hover {
+    border-color: #7c3aed;
+    background: #f3e8ff;
+}
+
+.add-project-upload-selected {
+    margin: 10px 0 0;
+    color: #475569;
+    font-size: 18px;
+}
+
+.add-project-actions {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+}
+
+.add-project-submit {
+    border: 0;
+    color: #ffffff;
+    border-radius: 12px;
+    min-height: 64px;
+    padding: 12px 22px;
+    background: linear-gradient(90deg, #7c3aed 0%, #9333ea 100%);
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.add-project-submit:hover,
+.add-project-submit:focus {
+    color: #ffffff;
+    filter: brightness(1.03);
+}
+
+.add-project-cancel {
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    min-height: 64px;
+    padding: 12px 22px;
+    color: #475569;
+    background: #f8fafc;
+    font-size: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-project-cancel:hover,
+.add-project-cancel:focus {
+    color: #334155;
+    background: #f1f5f9;
+}
+
+.add-project-tips {
+    width: min(66.6667%, 100%);
+    margin: 0 auto;
+    border: 1px solid #ddd6fe;
+    border-radius: 12px;
+    background: #f5f3ff;
+    padding: 18px 20px;
+}
+
+.add-project-tips h2 {
+    margin: 0 0 10px;
+    color: #5b21b6;
+    font-size: 26px;
+}
+
+.add-project-tips ul {
+    margin: 0;
+    padding-left: 24px;
+    color: #6d28d9;
+    font-size: 20px;
+}
+
+.add-project-tips li {
+    margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+
+    .add-project-hero {
+        padding: 20px 16px;
+    }
+
+    .add-project-hero h1 {
+        font-size: clamp(30px, 8.2vw, 40px);
+    }
+
+    .add-project-hero p {
+        font-size: 18px;
+    }
+
+    .add-project-card {
+        width: 100%;
+        padding: 18px 14px;
+    }
+
+    .add-project-tips {
+        width: 100%;
+    }
+
+    .add-project-label {
+        font-size: 17px;
+    }
+
+    .add-project-form .form-control {
+        min-height: 52px;
+        font-size: 20px;
+    }
+
+    .add-project-form textarea.form-control {
+        min-height: 160px;
+    }
+
+    .add-project-counter {
+        font-size: 18px;
+    }
+
+    .add-project-chip-add,
+    .add-project-submit,
+    .add-project-cancel {
+        min-height: 54px;
+        font-size: 18px;
+    }
+
+    .add-project-chip {
+        font-size: 16px;
+    }
+
+    .add-project-upload-zone {
+        padding: 24px 14px;
+        font-size: 18px;
+    }
+
+    .add-project-upload-zone i {
+        font-size: 30px;
+    }
+
+    .add-project-upload-zone small,
+    .add-project-upload-selected {
+        font-size: 15px;
+    }
+
+    .add-project-tips h2 {
+        font-size: 22px;
+    }
+
+    .add-project-tips ul {
+        font-size: 17px;
+    }
+
+    .add-project-chip-entry-row {
+        grid-template-columns: 1fr;
+    }
+
+    .add-project-actions {
+        grid-template-columns: 1fr;
+    }
+}
+

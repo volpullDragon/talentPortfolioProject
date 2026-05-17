@@ -1,0 +1,788 @@
+/* Portfolio overview and inline editing styles.
+   This file covers the portfolio hero, summary grid, cards, skill pills, experience cards, and edit-mode controls used across the portfolio route.
+   The rules are intentionally scoped to portfolio presentation and should not be repurposed as shared primitives unless they become truly generic. */
+.portfolio-page {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.portfolio-hero {
+    border-radius: 10px;
+    background: linear-gradient(175deg, #155dfc 8%, #8200db 92%);
+    color: #ffffff;
+    padding: 26px 28px;
+    box-shadow: 0px 10px 25px rgba(21, 93, 252, 0.2);
+}
+
+.portfolio-id {
+    margin: 0 0 8px;
+    font-size: 12px;
+    opacity: 0.85;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.portfolio-hero h1 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.portfolio-role {
+    margin: 4px 0 0;
+    font-size: clamp(20px, 2.2vw, 30px);
+    opacity: 0.95;
+}
+
+.portfolio-tagline {
+    margin: 8px 0 0;
+    font-size: 17px;
+    color: #e0e7ff;
+}
+
+.portfolio-meta-row {
+    margin-top: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: #dbeafe;
+}
+
+.portfolio-meta-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.portfolio-createField-btn {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background: #ffffff;
+    color: #155dfc;
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.portfolio-createField-btn:hover {
+    background: #eff6ff;
+}
+
+.bi-createField::before {
+    content: "+";
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.8em;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    transform: translateY(-5px);
+}
+
+.experience-card-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: #eff6ff;
+    color: #155dfc;
+    text-decoration: none;
+    border: 1px solid #dbeafe;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.experience-card-link:hover,
+.experience-card-link:focus,
+.experience-card-link:active,
+.experience-card-link:visited {
+    color: #155dfc;
+    text-decoration: none;
+}
+
+.experience-card-link:hover {
+    background: #dbeafe;
+}
+
+.portfolio-overview-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.portfolio-panel {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.portfolio-panel h2 {
+    font-size: 26px;
+    margin: 0 0 10px;
+    font-weight: 500;
+}
+
+.portfolio-panel h3 {
+    font-size: 28px;
+    margin: 18px 0 10px;
+    font-weight: 500;
+}
+
+.portfolio-panel p {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.65;
+}
+
+.portfolio-check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.portfolio-check-grid li {
+    position: relative;
+    padding-left: 16px;
+    color: #4b5563;
+}
+
+.portfolio-check-grid li::before {
+    content: "*";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    color: #2563eb;
+    font-size: 16px;
+}
+
+.portfolio-panel-tight h2 {
+    font-size: 24px;
+}
+
+.portfolio-panel-tight {
+    align-self: start;
+}
+
+.portfolio-skill-group + .portfolio-skill-group {
+    margin-top: 14px;
+}
+
+.portfolio-skill-group h4 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    color: #374151;
+    font-weight: 500;
+}
+
+.portfolio-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.portfolio-pill-row span {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 3px 8px;
+    font-size: 11px;
+    background: #dcfce7;
+    color: #166534;
+    font-weight: 600;
+}
+
+.portfolio-skill-group:nth-of-type(3n + 1) .portfolio-pill-row span {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.portfolio-skill-group:nth-of-type(3n + 2) .portfolio-pill-row span {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.portfolio-skill-group:nth-of-type(3n + 3) .portfolio-pill-row span {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.portfolio-section h2 {
+    margin: 0 0 14px;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.portfolio-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.experience-card-anchor,
+.experience-card-anchor:visited,
+.experience-card-anchor:hover,
+.experience-card-anchor:focus,
+.experience-card-anchor:active {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.experience-card {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.experience-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: #f8fafc;
+    display: block;
+}
+
+.experience-card-body {
+    padding: 10px;
+}
+
+.experience-card h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #212529;
+}
+
+.experience-card p {
+    margin: 8px 0 10px;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+/* Portfolio field cards: equal height and clamped skills preview */
+.portfolio-experience-grid {
+    grid-auto-rows: 1fr;
+}
+
+.portfolio-experience-grid .experience-card-container,
+.portfolio-experience-grid .experience-card-anchor {
+    height: 100%;
+}
+
+.portfolio-experience-grid .experience-card-portfolio {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-experience-grid .experience-card-portfolio img {
+    height: 152px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.portfolio-experience-grid .experience-card-portfolio .experience-card-body {
+    min-height: 0;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.portfolio-experience-grid .experience-card-skill-pills {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-content: flex-start;
+    min-height: 50px;
+    max-height: 50px;
+    overflow: hidden;
+    position: relative;
+    padding-right: 20px;
+}
+
+.portfolio-experience-grid .experience-card-skill-pills.is-truncated::after {
+    content: "...";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1;
+    background: #ffffff;
+    padding-left: 4px;
+}
+
+.portfolio-experience-grid .experience-card-skill-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid #c7d2fe;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 4px 9px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.portfolio-experience-grid .experience-card-portfolio .portfolio-pill-row {
+    margin-top: auto;
+}
+
+.portfolio-experience-grid .experience-card-add {
+    height: 100%;
+}
+
+.portfolio-experience-grid .experience-card-add .experience-card-add-inner {
+    min-height: 100%;
+}
+
+.experience-card-add {
+    border: 1px dashed #60a5fa;
+    background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+    min-height: 100%;
+}
+
+.experience-card-add-inner {
+    min-height: 264px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.experience-card-add-inner i {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.experience-card-add h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #1d4ed8;
+}
+
+.experience-card-add p {
+    margin: 0;
+    color: #334155;
+    font-size: 13px;
+}
+
+.experience-card-anchor:hover .experience-card-add,
+.experience-card-anchor:focus .experience-card-add {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14);
+}
+
+.speciality-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.speciality-card {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.speciality-card i {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #dbeafe;
+    color: #2563eb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.speciality-card h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.speciality-card p {
+    margin: 8px 0 0;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+@media (max-width: 1100px) {
+    .portfolio-overview-grid,
+    .portfolio-card-grid,
+    .speciality-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-page {
+        gap: 20px;
+    }
+
+    .portfolio-hero {
+        padding: 18px;
+    }
+
+    .portfolio-overview-grid,
+    .portfolio-card-grid,
+    .speciality-grid,
+    .portfolio-check-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-section h2 {
+        font-size: 30px;
+    }
+}
+
+/* Inline About Me editor (portfolio page) */
+.portfolio-about-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.portfolio-about-edit-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.portfolio-inline-edit-btn,
+.portfolio-inline-save-btn,
+.portfolio-inline-cancel-btn {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #ffffff;
+    color: #374151;
+}
+
+.portfolio-inline-edit-btn:hover,
+.portfolio-inline-cancel-btn:hover {
+    background: #f3f4f6;
+}
+
+.portfolio-inline-save-btn {
+    border-color: #1d4ed8;
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.portfolio-inline-save-btn:hover {
+    background: #1e40af;
+}
+
+.portfolio-about-form {
+    margin-top: 12px;
+}
+
+.portfolio-about-textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #111827;
+    resize: vertical;
+    min-height: 120px;
+}
+
+.portfolio-about-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.portfolio-word-count {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.portfolio-word-count.is-over-limit {
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+.is-hidden {
+    display: none;
+}
+
+/* What I Bring strengths editor (portfolio page) */
+.portfolio-strengths-section {
+    margin-top: 18px;
+}
+
+.portfolio-strengths-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.portfolio-strength-actions {
+    display: flex;
+}
+
+.portfolio-strength-actions .portfolio-inline-edit-btn {
+    border-radius: 999px;
+    padding: 6px 12px;
+}
+
+.portfolio-strength-form {
+    margin-top: 12px;
+}
+
+.portfolio-strength-input {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #111827;
+}
+
+.portfolio-strengths-grid {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.portfolio-strength-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #dbeafe;
+    color: #1d4ed8;
+    min-height: 36px;
+}
+
+.portfolio-strength-empty {
+    margin: 0;
+    color: #6b7280;
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .portfolio-strengths-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.portfolio-strength-item {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.portfolio-strength-remove-btn {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #bfdbfe;
+    background: #ffffff;
+    color: #1d4ed8;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    z-index: 2;
+    padding: 0;
+}
+
+.portfolio-strength-remove-btn .bi {
+    font-size: 10px;
+    line-height: 1;
+}
+
+.portfolio-strength-item:hover .portfolio-strength-remove-btn,
+.portfolio-strength-item:focus-within .portfolio-strength-remove-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.portfolio-strength-item .portfolio-strength-pill {
+    display: inline-flex;
+}
+
+/* Strength list behavior override */
+.portfolio-strengths-grid {
+    justify-items: start;
+    align-items: start;
+}
+
+.portfolio-strength-pill {
+    width: fit-content;
+    max-width: 100%;
+}
+
+.portfolio-strength-pill::before {
+    content: "•";
+    margin-right: 6px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.portfolio-strength-pill-add {
+    border: 1px dashed #93c5fd;
+    background: #eff6ff;
+    cursor: pointer;
+}
+
+.portfolio-strength-pill-add::before {
+    content: "";
+    margin-right: 0;
+}
+
+.portfolio-strength-pill-add .bi {
+    margin-right: 6px;
+}
+
+/* Featured star toggle button */
+.experience-card-container {
+  position: relative;
+}
+
+.experience-card-star-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: #fff;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.experience-card-star-toggle:hover {
+  color: #f59e0b;
+  background: #f9fafb;
+}
+
+.experience-card-star-toggle[data-featured="true"] {
+  color: #fff;
+  background: #f59e0b;
+}
+
+.select-with-arrow {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%236b7280' d='M4.47 6.97a.75.75 0 0 1 1.06 0L8 9.44l2.47-2.47a.75.75 0 1 1 1.06 1.06L8.53 11.03a.75.75 0 0 1-1.06 0L4.47 8.03a.75.75 0 0 1 0-1.06z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    background-size: 14px 14px;
+    padding-right: 2.35rem;
+}
+
+.course-search-input {
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-field {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px 14px;
+    padding-right: 36px;
+}
+
+.dropdown-field::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+
+
+.experience-card-delete-form {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+}
+
+.experience-card-delete-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.experience-card-delete-btn:hover {
+  background: #ffe4e6;
+  border-color: #fda4af;
+  color: #9f1239;
+}

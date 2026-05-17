@@ -1,0 +1,119 @@
+/* Auth pages: isolated login, register, logout, and password-reset layouts.
+   This file owns the authentication screens only, including centered containers, card sizing, and mobile adjustments.
+   Faculty dashboard, student dashboard, overlays, and general app shell rules should stay out of this file to keep auth views lightweight. */
+.auth-page {
+    min-height: 100vh;
+    background: #f3f4f6;
+}
+
+.auth-main-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 16px;
+    background: #f3f4f6;
+}
+
+.auth-main-container .content-wrapper {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto 14px;
+    gap: 10px;
+}
+
+.auth-form-content {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.auth-container {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.auth-container .card {
+    background: #ffffff;
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    align-self: auto;
+    flex-shrink: 1;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.auth-container .card-header,
+.auth-container .card-body,
+.auth-container .card-footer {
+    width: 100%;
+}
+
+.auth-container .logout-card {
+    width: min(100%, 28rem);
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .auth-main-container {
+        justify-content: flex-start;
+        padding: 20px 12px;
+    }
+
+    .auth-main-container .content-wrapper {
+        margin-bottom: 10px;
+    }
+
+    .auth-form-content {
+        padding: 0;
+    }
+
+    .auth-container {
+        max-width: 100%;
+    }
+}
+
+
+/* Faculty register form grid layout */
+.faculty-register-form {
+    display: grid;
+    gap: 12px;
+}
+
+.faculty-register-form .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0;
+}
+
+.faculty-register-form .col-md-6 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+.faculty-register-form .form-group {
+    margin-bottom: 0;
+}
+
+.faculty-register-form input,
+.faculty-register-form select,
+.faculty-register-form textarea {
+    width: 100%;
+}
+
+.faculty-register-form .form-group.mt-4 {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .faculty-register-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}

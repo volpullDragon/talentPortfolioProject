@@ -1,0 +1,7 @@
+/* Dashboard entrypoint: assembles the dashboard experience from shared layers plus dashboard page partials.
+   The import order matters here: layout first, then components, then dashboard pages and overlays so the cascade stays intentional.
+   This file should remain a thin manifest only; it should not contain standalone design rules. */
+@import url("../layout/layout.css");
+@import url("../components/components.css");
+@import url("../pages/dashboard/dashboard-pages.css");
+@import url("../pages/dashboard/dashboard-overlays.css");

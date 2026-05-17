@@ -1,0 +1,448 @@
+/* Home page and portal landing styles.
+   This file governs the public landing hero, portal cards, feature sections, and footer treatment used on the home route.
+   It is intentionally separate from the dashboard and auth styling so the landing experience can evolve independently. */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--gradient-home-surface);
+}
+
+/* Hero Section */
+.hero-section {
+    width: 100%;
+    background: var(--gradient-home-hero);
+    overflow: hidden;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+    width: 100%;
+    padding: 24px;
+}
+
+/* Header */
+.header-frame {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 24px;
+    width: 100%;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.icon-talent-bank {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.icon-talent-bank svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.main-heading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 60px;
+    letter-spacing: 0.2637px;
+    text-align: center;
+    background: var(--gradient-brand-horizontal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.0703px;
+    text-align: center;
+    color: var(--color-text-secondary);
+    width: 100%;
+    max-width: 1161px;
+}
+
+.description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.4395px;
+    text-align: center;
+    color: var(--color-text-tertiary);
+    width: 100%;
+    max-width: 672px;
+    white-space: pre-wrap;
+}
+
+/* Portal Cards Grid */
+.portal-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
+    max-width: 1024px;
+}
+
+.portal-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Portal Card Header */
+.portal-card-header {
+    height: 216px;
+    position: relative;
+    width: 100%;
+}
+
+.faculty-gradient {
+    background: linear-gradient(156.468deg, rgb(0, 201, 80) 0%, rgb(0, 153, 102) 100%);
+}
+
+.student-gradient {
+    background: linear-gradient(156.468deg, rgb(21, 93, 252) 0%, rgb(152, 16, 250) 100%);
+}
+
+.portal-icon {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    width: 64px;
+    height: 64px;
+}
+
+.portal-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.portal-title {
+    position: absolute;
+    left: 32px;
+    top: 112px;
+    width: 432px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.3955px;
+    color: white;
+}
+
+.portal-subtitle {
+    position: absolute;
+    left: 32px;
+    top: 156px;
+    width: 432px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.4395px;
+    color: white;
+    opacity: 0.9;
+}
+
+/* Portal Card Body */
+.portal-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px;
+}
+
+.access-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.4492px;
+    color: var(--color-text-strong);
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    height: 24px;
+}
+
+.chevron-icon {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.feature-item span {
+    position: absolute;
+    left: 32px;
+    top: -0.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.3125px;
+    color: #364153;
+}
+
+/* Login Buttons */
+.login-button {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.3125px;
+    color: white;
+    transition: opacity 0.2s;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+.login-button.faculty {
+    background-color: var(--color-brand-success);
+}
+
+.login-button.student {
+    background-color: var(--color-brand-primary);
+}
+
+.button-arrow {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Features Section */
+.features-section {
+    width: 100%;
+    padding: 80px 24px;
+}
+
+.features-heading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 0.3691px;
+    text-align: center;
+    color: var(--color-text-strong);
+    margin-bottom: 64px;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: white;
+    width: 365.664px;
+    height: 248px;
+    border-radius: 14px;
+    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1), 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.feature-icon-container {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue-bg {
+    background-color: #dbeafe;
+}
+
+.purple-bg {
+    background-color: #f3e8ff;
+}
+
+.green-bg {
+    background-color: #dcfce7;
+}
+
+.feature-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.feature-card-title {
+    position: absolute;
+    left: 32px;
+    top: 104px;
+    width: 301.664px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.4492px;
+    color: var(--color-text-strong);
+}
+
+.feature-card-description {
+    position: absolute;
+    left: 32px;
+    top: 144px;
+    width: 301.664px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.3125px;
+    color: var(--color-text-secondary);
+}
+
+/* Footer */
+.footer {
+    background: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 33px 24px;
+}
+
+.footer-copyright {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.3125px;
+    color: var(--color-text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+    .portal-cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-heading {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .description {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .hero-container {
+        gap: 32px;
+    }
+
+    .portal-title,
+    .portal-subtitle {
+        width: calc(100% - 64px);
+    }
+
+    .button-arrow {
+        right: 20%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-heading {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .title-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .feature-card {
+        width: 100%;
+        max-width: 365.664px;
+    }
+}
+
