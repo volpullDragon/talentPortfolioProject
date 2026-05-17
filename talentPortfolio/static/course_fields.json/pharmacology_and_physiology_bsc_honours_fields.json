@@ -1,0 +1,48 @@
+{
+  "course": "Pharmacology and Physiology BSc Honours",
+  "course_family": "Life Sciences & Health",
+  "groups": {
+    "Scientific Foundations": [
+      "Laboratory Skills",
+      "Scientific Method",
+      "Data Recording",
+      "Biomedical Knowledge"
+    ],
+    "Clinical & Applied": [
+      "Clinical Awareness",
+      "Diagnostic Reasoning",
+      "Public Health Literacy",
+      "Patient-Centred Practice"
+    ],
+    "Data & Quality": [
+      "Data Analysis",
+      "Quality Assurance",
+      "Regulatory Compliance",
+      "Research Ethics"
+    ],
+    "Professional Practice": [
+      "Technical Writing",
+      "Interprofessional Communication",
+      "Problem Solving",
+      "Evidence Appraisal"
+    ]
+  },
+  "fields": [
+    "Laboratory Skills",
+    "Scientific Method",
+    "Data Recording",
+    "Biomedical Knowledge",
+    "Clinical Awareness",
+    "Diagnostic Reasoning",
+    "Public Health Literacy",
+    "Patient-Centred Practice",
+    "Data Analysis",
+    "Quality Assurance",
+    "Regulatory Compliance",
+    "Research Ethics",
+    "Technical Writing",
+    "Interprofessional Communication",
+    "Problem Solving",
+    "Evidence Appraisal"
+  ]
+}

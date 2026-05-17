@@ -1,0 +1,48 @@
+{
+  "course": "International Law LLM",
+  "course_family": "Law & Policy",
+  "groups": {
+    "Legal Research": [
+      "Legal Research",
+      "Case Analysis",
+      "Statutory Interpretation",
+      "Citation & Referencing"
+    ],
+    "Professional Practice": [
+      "Drafting & Documentation",
+      "Advocacy",
+      "Client Communication",
+      "Ethics & Professional Conduct"
+    ],
+    "Public & International": [
+      "Public Law",
+      "International Law",
+      "Human Rights",
+      "Policy Analysis"
+    ],
+    "Commercial Context": [
+      "Contract Law",
+      "Dispute Resolution",
+      "Regulatory Compliance",
+      "Commercial Awareness"
+    ]
+  },
+  "fields": [
+    "Legal Research",
+    "Case Analysis",
+    "Statutory Interpretation",
+    "Citation & Referencing",
+    "Drafting & Documentation",
+    "Advocacy",
+    "Client Communication",
+    "Ethics & Professional Conduct",
+    "Public Law",
+    "International Law",
+    "Human Rights",
+    "Policy Analysis",
+    "Contract Law",
+    "Dispute Resolution",
+    "Regulatory Compliance",
+    "Commercial Awareness"
+  ]
+}

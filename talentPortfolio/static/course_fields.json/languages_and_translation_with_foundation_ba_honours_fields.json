@@ -1,0 +1,48 @@
+{
+  "course": "Languages and Translation with Foundation BA Honours",
+  "course_family": "Translation & TESOL",
+  "groups": {
+    "Language Mastery": [
+      "Advanced Grammar",
+      "Academic Writing",
+      "Listening & Speaking",
+      "Vocabulary Development"
+    ],
+    "Translation/Teaching Practice": [
+      "Translation Techniques",
+      "Interpretation Basics",
+      "Lesson Planning",
+      "Classroom Management"
+    ],
+    "Assessment & Feedback": [
+      "Assessment Design",
+      "Constructive Feedback",
+      "Error Analysis",
+      "Progress Tracking"
+    ],
+    "Professional Skills": [
+      "Cultural Mediation",
+      "Material Development",
+      "Presentation Skills",
+      "Reflective Practice"
+    ]
+  },
+  "fields": [
+    "Advanced Grammar",
+    "Academic Writing",
+    "Listening & Speaking",
+    "Vocabulary Development",
+    "Translation Techniques",
+    "Interpretation Basics",
+    "Lesson Planning",
+    "Classroom Management",
+    "Assessment Design",
+    "Constructive Feedback",
+    "Error Analysis",
+    "Progress Tracking",
+    "Cultural Mediation",
+    "Material Development",
+    "Presentation Skills",
+    "Reflective Practice"
+  ]
+}

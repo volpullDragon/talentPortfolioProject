@@ -1,0 +1,48 @@
+{
+  "course": "PhD in Finance and Accounting",
+  "course_family": "Research (PhD)",
+  "groups": {
+    "Research Design": [
+      "Research Question Framing",
+      "Methodology Design",
+      "Literature Review",
+      "Ethical Approval"
+    ],
+    "Execution & Analysis": [
+      "Data Collection",
+      "Data Analysis",
+      "Critical Synthesis",
+      "Reproducible Workflows"
+    ],
+    "Scholarly Communication": [
+      "Academic Writing",
+      "Conference Presentation",
+      "Publication Strategy",
+      "Peer Review"
+    ],
+    "Professional Development": [
+      "Project Planning",
+      "Supervision Collaboration",
+      "Grant Awareness",
+      "Impact & Engagement"
+    ]
+  },
+  "fields": [
+    "Research Question Framing",
+    "Methodology Design",
+    "Literature Review",
+    "Ethical Approval",
+    "Data Collection",
+    "Data Analysis",
+    "Critical Synthesis",
+    "Reproducible Workflows",
+    "Academic Writing",
+    "Conference Presentation",
+    "Publication Strategy",
+    "Peer Review",
+    "Project Planning",
+    "Supervision Collaboration",
+    "Grant Awareness",
+    "Impact & Engagement"
+  ]
+}
