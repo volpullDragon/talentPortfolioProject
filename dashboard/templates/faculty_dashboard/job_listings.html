@@ -1,0 +1,32 @@
+{# Job Listings template. #}
+{% extends "home/base.html" %}
+{% block title %}Talented Bank - {{ field_of_expertise.field_of_expertise }} Portfolio{% endblock title %}
+{% block content %}
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>{{ field_of_expertise.field_of_expertise }} Projects</h3>
+  </div>
+  <div class="row">
+    {% for project in projects %}
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <a href="{% url 'see-project-files' project.id %}" class=""><div class="card-body">
+            <h5 class="card-title">{{ project.project_title }}</h5>
+            <p class="card-text"><strong>Field:</strong> {{ project.field_of_expertise }}</p>
+            <p class="card-text"><strong>Summary of Project:</strong> {{ project.project_summary }}</p>
+            <p class="card-text"><strong>Skills:</strong> {{ project.skills_demonstrated }}</p>
+          </div></a>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <p>No projects found.</p>
+      </div>
+    {% endfor %}
+    <div class="col-12"></div>
+  </div>
+</div>
+
+
+{% endblock content %}

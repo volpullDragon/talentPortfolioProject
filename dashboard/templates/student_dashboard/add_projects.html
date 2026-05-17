@@ -1,0 +1,97 @@
+{# Add Projects template. #}
+{% extends "home/base.html" %}
+{% block title %}Talented Bank - Add Project{% endblock title %}
+
+{% block content %}
+<section class="portfolio-page add-project-page" data-add-project-page>
+  <div class="field-projects-top-actions">
+    <a href="{% url 'see-field-projects' field_of_expertise.id %}" class="projects-add-back-btn projects-add-back-btn-top">
+      <i class="bi bi-arrow-left"></i><span>Back to {{ field_of_expertise.field_of_expertise }}</span>
+    </a>
+  </div>
+
+  <header class="add-project-hero">
+    <h1><i class="bi bi-plus-lg"></i> New Project</h1>
+    <p>Add a new project to showcase your skills</p>
+  </header>
+
+  <aside class="add-project-tips">
+    <h2>Tips for a great project showcase</h2>
+    <ul>
+      <li>Write a clear, concise description that highlights the problem you solved.</li>
+      <li>Include specific technologies and tools you used.</li>
+      <li>Add a live demo or repository link in your description when possible.</li>
+      <li>Use screenshots or clips that showcase key features.</li>
+    </ul>
+  </aside>
+
+  <article class="add-project-card">
+    {% if form.errors %}
+      <div class="alert alert-danger add-project-alert">
+        <strong>Please fix the issues below.</strong>
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="add-project-form" novalidate>
+      {% csrf_token %}
+
+      <label class="add-project-label" for="id_project_title">Project Title *</label>
+      {{ form.project_title }}
+      {{ form.project_title.errors }}
+
+      <label class="add-project-label" for="id_project_summary">Description *</label>
+      {{ form.project_summary }}
+      <p class="add-project-counter" data-word-count-for="id_project_summary">0 / 500 words</p>
+      {{ form.project_summary.errors }}
+
+      <label class="add-project-label" for="id_what_i_learnd">What I Learned *</label>
+      {{ form.what_i_learnd }}
+      <p class="add-project-counter" data-word-count-for="id_what_i_learnd">0 / 500 words</p>
+      {{ form.what_i_learnd.errors }}
+
+      <div class="add-project-chip-group" data-chip-group="skills">
+        <label class="add-project-label" for="project-skill-input">Key Skills Demonstrated *</label>
+        <div class="add-project-chip-entry-row">
+          <input id="project-skill-input" type="text" class="form-control" placeholder="UX, UI Design, API integration" data-chip-input>
+          <button type="button" class="btn add-project-chip-add" data-chip-add>Add</button>
+        </div>
+        <div class="add-project-chip-list" data-chip-list></div>
+        {{ form.skills_demonstrated }}
+        {{ form.skills_demonstrated.errors }}
+      </div>
+
+      <div class="add-project-chip-group" data-chip-group="tech">
+        <label class="add-project-label" for="project-tech-input">Technologies &amp; Tools</label>
+        <div class="add-project-chip-entry-row">
+          <input id="project-tech-input" type="text" class="form-control" placeholder="e.g., React, TypeScript, Node.js" data-chip-input>
+          <button type="button" class="btn add-project-chip-add" data-chip-add>Add</button>
+        </div>
+        <div class="add-project-chip-list" data-chip-list></div>
+        {{ form.tech_n_tools_used }}
+        {{ form.tech_n_tools_used.errors }}
+      </div>
+
+      <label class="add-project-label" for="id_git_link"><i class="bi bi-github"></i> GitHub Repository</label>
+      {{ form.git_link }}
+      {{ form.git_link.errors }}
+
+      <div class="add-project-upload-wrap">
+        <label class="add-project-label" for="id_project_media">Project Media (Optional)</label>
+        <label for="id_project_media" class="add-project-upload-zone" data-upload-zone>
+          <i class="bi bi-upload"></i>
+          <span>Click to upload or drag and drop</span>
+          <small>PNG, JPG, DOCX, XLSX, PDF, MP4 (max. 1000MB each)</small>
+        </label>
+        <input id="id_project_media" name="project_media" type="file" class="d-none" multiple accept=".png,.jpg,.jpeg,.gif,.webp,.doc,.docx,.xlsx,.pdf,.txt,.zip,.mp4,.avi,.mov,.wmv" data-upload-input>
+        <p class="add-project-upload-selected" data-upload-selected>No files selected</p>
+      </div>
+
+      <div class="add-project-actions">
+        <button type="submit" class="btn add-project-submit">Create Project</button>
+        <a href="{% url 'see-field-projects' field_of_expertise.id %}" class="btn add-project-cancel">Cancel</a>
+      </div>
+    </form>
+  </article>
+</section>
+{% endblock content %}

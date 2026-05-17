@@ -1,0 +1,281 @@
+{# Project template. #}
+{% extends "home/base.html" %}
+{% block title %}Talented Bank - {{ project.project_title }} - {{ project.field_of_expertise.field_of_expertise }}{% endblock %}
+
+{% block content %}
+<section class="project-detail-page" data-project-detail-page data-field-name="{{ project.field_of_expertise.field_of_expertise|default_if_none:'' }}">
+  <a href="{% url 'see-field-projects' project.field_of_expertise.id %}" class="faculty-job-detail-back-link">
+    <i class="bi bi-arrow-left"></i>
+    <span>Back to Field</span>
+  </a>
+
+  <header class="project-detail-hero">
+    <div class="project-detail-hero-main">
+      <p class="project-detail-badge"><i class="bi bi-kanban"></i> Project Detail</p>
+      <h1>{{ project.project_title }}</h1>
+      <p class="project-detail-subtitle">{{ project.field_of_expertise.field_of_expertise }}</p>
+    </div>
+    <div class="project-detail-hero-actions">
+      <a href="{% url 'upload-project-media' project.id %}" class="project-detail-action-btn">
+        <i class="bi bi-upload"></i><span>Upload Media</span>
+      </a>
+      <a href="{% url 'see-project-files' project.id %}" class="project-detail-action-btn project-detail-action-btn-muted">
+        <i class="bi bi-images"></i><span>Refresh Media</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="project-detail-grid">
+    <article class="project-detail-card project-detail-main-card">
+      <div class="project-detail-card-header">
+        <h2>About This Project</h2>
+        <button type="button" class="project-detail-inline-btn" data-project-edit-toggle>
+          <i class="bi bi-pencil"></i><span>Edit</span>
+        </button>
+      </div>
+      <p class="project-detail-copy" data-project-edit-content data-project-edit-field="project_summary">{{ project.project_summary|default:'Add a project summary.' }}</p>
+
+      <div class="project-detail-divider"></div>
+
+      <div class="project-detail-card-header">
+        <h3>Technologies &amp; Tools</h3>
+        <button type="button" class="project-detail-inline-btn" data-project-tech-open>
+          <i class="bi bi-plus-lg"></i><span>Add</span>
+        </button>
+      </div>
+
+      <form method="post" class="project-detail-tech-form is-hidden" data-project-tech-form>
+        {% csrf_token %}
+        <input
+          type="text"
+          name="project_tech_entry"
+          class="project-detail-skill-input"
+          maxlength="80"
+          placeholder="Add a technology or tool..."
+          data-project-tech-input
+        >
+        <div class="project-detail-skill-actions">
+          <button type="submit" name="project_tech_submit" class="project-detail-inline-btn" data-project-tech-save>
+            <i class="bi bi-check2"></i><span>Submit</span>
+          </button>
+          <button type="button" class="project-detail-inline-btn project-detail-inline-btn-muted" data-project-tech-cancel>
+            <i class="bi bi-x-lg"></i><span>Cancel</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="project-detail-pill-grid" data-project-tech-grid>
+        {% for tech in project_tech_items %}
+          <form method="post" class="project-detail-pill-item" data-project-tech-remove-form>
+            {% csrf_token %}
+            <input type="hidden" name="project_tech_remove" value="{{ tech }}">
+            <button type="submit" class="project-detail-pill-remove" aria-label="Remove technology">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <span class="project-detail-pill">{{ tech }}</span>
+          </form>
+        {% empty %}
+          <p class="project-detail-skill-empty">No tools listed.</p>
+        {% endfor %}
+      </div>
+
+      <div class="project-detail-link-wrap">
+        {% if project.git_link %}
+          <a href="{{ project.git_link }}" target="_blank" rel="noopener noreferrer" class="project-detail-github-link">
+            <i class="bi bi-github"></i><span>View on GitHub</span>
+          </a>
+        {% else %}
+          <span class="project-detail-github-link is-disabled">
+            <i class="bi bi-github"></i><span>No GitHub link added yet</span>
+          </span>
+        {% endif %}
+      </div>
+    </article>
+
+    <article class="project-detail-card project-detail-skills-card">
+      <div class="project-detail-card-header">
+        <h2>Key Skills</h2>
+      </div>
+
+      <form method="post" class="project-detail-skill-form is-hidden" data-project-skill-form>
+        {% csrf_token %}
+        <input
+          type="text"
+          name="project_skill_entry"
+          class="project-detail-skill-input"
+          maxlength="80"
+          placeholder="Add a key skill..."
+          data-project-skill-input
+        >
+        <div class="project-detail-skill-actions">
+          <button type="submit" name="project_skill_submit" class="project-detail-inline-btn" data-project-skill-save>
+            <i class="bi bi-check2"></i><span>Submit</span>
+          </button>
+          <button type="button" class="project-detail-inline-btn project-detail-inline-btn-muted" data-project-skill-cancel>
+            <i class="bi bi-x-lg"></i><span>Cancel</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="project-detail-pill-grid" data-project-skill-grid>
+        {% for skill in project_skill_items %}
+          <form method="post" class="project-detail-pill-item" data-project-skill-remove-form>
+            {% csrf_token %}
+            <input type="hidden" name="project_skill_remove" value="{{ skill }}">
+            <button type="submit" class="project-detail-pill-remove" aria-label="Remove skill">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <span class="field-skill-pill project-detail-skill-pill">{{ skill }}</span>
+          </form>
+        {% empty %}
+          <p class="project-detail-skill-empty">No key skills yet. Add your first one.</p>
+        {% endfor %}
+
+        <button type="button" class="field-skill-pill project-detail-skill-add" data-project-skill-open>
+          <i class="bi bi-plus-lg"></i><span>Add Skill</span>
+        </button>
+      </div>
+    </article>
+
+    <article class="project-detail-card">
+      <div class="project-detail-card-header">
+        <h2>What I Learned</h2>
+        <button type="button" class="project-detail-inline-btn" data-project-edit-toggle>
+          <i class="bi bi-pencil"></i><span>Edit</span>
+        </button>
+      </div>
+      <p class="project-detail-copy" data-project-edit-content data-project-edit-field="what_i_learnd">{{ project.what_i_learnd|default:'Add what you learned from this project.' }}</p>
+    </article>
+
+    <article class="project-detail-card project-detail-media-card">
+      <div class="project-detail-card-header project-detail-media-header">
+        <h2>Project Media</h2>
+        <a href="{% url 'upload-project-media' project.id %}" class="project-detail-upload-link" data-project-upload-btn>
+          <i class="bi bi-cloud-arrow-up"></i><span>Upload More Media</span>
+        </a>
+      </div>
+
+      <div class="project-detail-media-metrics">
+        <div class="project-detail-metric"><strong>{{ pictures|length }}</strong><span>Images</span></div>
+        <div class="project-detail-metric"><strong>{{ videos|length }}</strong><span>Videos</span></div>
+        <div class="project-detail-metric"><strong>{{ files|length }}</strong><span>Files</span></div>
+      </div>
+
+      {% if pictures %}
+        <section class="project-detail-media-section">
+          <h3><i class="bi bi-image"></i> Images</h3>
+          <div class="project-detail-image-grid">
+            {% for picture in pictures %}
+              <article class="project-detail-image-item">
+                <img src="{{ picture.image.url }}" alt="{{ picture.caption|default:'Project image' }}" class="project-detail-image-thumb" loading="lazy">
+                <div class="project-detail-media-caption-row">
+                  <p class="project-detail-media-date">{{ picture.uploaded_at|date:"M d, Y" }}</p>
+                  <a href="{% url 'delete-media-file' 'image' picture.id %}" class="project-detail-media-delete" data-confirm-message="Are you sure you want to delete this image?" aria-label="Delete image">
+                    <i class="bi bi-trash"></i>
+                  </a>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
+      {% if videos %}
+        <section class="project-detail-media-section">
+          <h3><i class="bi bi-camera-video"></i> Videos</h3>
+          <div class="project-detail-video-grid">
+            {% for video in videos %}
+              <article class="project-detail-video-item">
+                <video controls preload="metadata" class="project-detail-video-player">
+                  <source src="{{ video.video.url }}">
+                  Your browser does not support the video tag.
+                </video>
+                <div class="project-detail-media-caption-row">
+                  <p class="project-detail-media-date">{{ video.uploaded_at|date:"M d, Y" }}</p>
+                  <a href="{% url 'delete-media-file' 'video' video.id %}" class="project-detail-media-delete" data-confirm-message="Are you sure you want to delete this video?" aria-label="Delete video">
+                    <i class="bi bi-trash"></i>
+                  </a>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
+      {% if files %}
+        <section class="project-detail-media-section">
+          <h3><i class="bi bi-file-earmark"></i> Documents</h3>
+          <div class="project-detail-file-list">
+            {% for file in files %}
+              <article class="project-detail-file-item">
+                <div class="project-detail-file-head">
+                  <div>
+                    <p class="project-detail-file-name">{{ file.file_name|default:file.file.name }}</p>
+                    <p class="project-detail-media-date">Uploaded: {{ file.uploaded_at|date:"M d, Y H:i" }}</p>
+                  </div>
+                  <div class="project-detail-file-actions">
+                    <a href="{{ file.file.url }}" target="_blank" class="project-detail-file-action-link">
+                      <i class="bi bi-download"></i><span>Download</span>
+                    </a>
+                    <a href="{% url 'delete-media-file' 'file' file.id %}" class="project-detail-media-delete" data-confirm-message="Are you sure you want to delete this file?" aria-label="Delete file">
+                      <i class="bi bi-trash"></i>
+                    </a>
+                  </div>
+                </div>
+
+                {% if file.is_pdf %}
+                  <iframe src="{{ file.preview_url }}" class="project-detail-doc-preview" title="PDF preview"></iframe>
+                {% elif file.is_text %}
+                  <pre class="project-detail-text-preview">{{ file.preview_text|default:"Preview unavailable for this text file." }}</pre>
+                {% elif file.is_word %}
+                  {% if file.word_preview_available and file.preview_url %}
+                    <iframe src="{{ file.preview_url }}" class="project-detail-doc-preview" title="Word preview"></iframe>
+                  {% else %}
+                    <p class="project-detail-file-preview-unavailable">Word preview is unavailable for this file. Use Download to open it.</p>
+                  {% endif %}
+                {% else %}
+                  <p class="project-detail-file-preview-unavailable">Preview is not available for this file type.</p>
+                {% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
+      {% if not pictures and not videos and not files %}
+        <div class="project-detail-media-empty">
+          <i class="bi bi-folder2-open"></i>
+          <p>No media uploaded yet.</p>
+          <a href="{% url 'upload-project-media' project.id %}" class="project-detail-upload-link">
+            <i class="bi bi-cloud-arrow-up"></i><span>Upload Your First Files</span>
+          </a>
+        </div>
+      {% endif %}
+    </article>
+
+    <article class="project-detail-card project-detail-related-card">
+      <h2>More Projects</h2>
+      <div class="project-detail-related-list">
+        {% for related in sibling_projects %}
+          <a href="{% url 'see-project-files' related.id %}" class="project-detail-related-item">
+            <h3>{{ related.project_title }}</h3>
+            <p>{{ related.project_summary|default:'No summary provided.'|truncatechars:140 }}</p>
+            <div class="project-detail-pill-row" data-project-tech-row data-skills-source="{{ related.tech_n_tools_used|default_if_none:'' }}"></div>
+          </a>
+        {% empty %}
+          <p class="project-detail-empty">No other projects in this field yet.</p>
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+
+  <div class="project-detail-danger-zone">
+    <form method="post" action="{% url 'delete-project' project.id %}" class="project-detail-danger-form" data-confirm-title="Delete project" data-confirm-message="Delete this project and all uploaded media?" data-confirm-confirm-text="Delete" data-confirm-confirm-class="btn-danger">
+      {% csrf_token %}
+      <button type="submit" class="project-detail-delete-btn">
+        <i class="bi bi-trash"></i><span>Delete Project</span>
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

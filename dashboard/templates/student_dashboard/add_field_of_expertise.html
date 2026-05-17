@@ -1,0 +1,29 @@
+{# Add Field Of Expertise template. #}
+{% extends "home/base.html" %}
+{% block title %}Talented Bank - Add Field of Expertise{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h3>Add Field of Expertise</h3>
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="{{ form.field_of_expertise.id_for_label }}" class="form-label">Field of Expertise</label>
+      {{ form.field_of_expertise }}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.level_of_confidence.id_for_label }}" class="form-label">Confidence Scale</label>
+      {{ form.level_of_confidence }}
+      <div class="form-text">Select your confidence level from Low Confidence to Advanced Confidence.</div>
+    </div>
+
+    
+
+
+    <button type="submit" class="btn btn-success">Add</button>
+    <a href="{% url 'users-portfolio' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

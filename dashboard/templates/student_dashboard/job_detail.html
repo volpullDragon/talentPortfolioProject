@@ -1,0 +1,85 @@
+{# Job Detail template. #}
+{% extends "home/base.html" %}
+{% load humanize %}
+
+{% block title %}Talented Bank - {{ job.job_title }}{% endblock %}
+
+{% block content %}
+<section class="student-job-detail-page" data-student-job-detail data-apply-url="{% url 'apply-to-job' job.id %}" data-save-url="{% url 'toggle-save-job' job.id %}">
+  <a href="{% url 'student-job-search' %}" class="student-job-back-link">
+    <i class="bi bi-arrow-left">
+
+    </i> Back to Jobs</a>
+
+  <header class="student-job-hero">
+    <div class="student-job-hero-copy">
+      <h1>{{ job.job_title }}</h1>
+      <h2>{{ job.profile.faculty.get_full_name|default:"Talent Bank Partner" }}</h2>
+      <div class="student-job-hero-meta">
+        <span><i class="bi bi-geo-alt"></i> {{ job.location|default:"Remote" }}</span>
+        <span><i class="bi bi-cash"></i> {% if job.salary %}${{ job.salary|floatformat:0 }}{% else %}Salary negotiable{% endif %}</span>
+        <span><i class="bi bi-clock"></i> Posted {{ job.posted_date|naturalday }}</span>
+      </div>
+    </div>
+    <div class="student-job-hero-score">{{ match_score }}% Match</div>
+  </header>
+
+  <div class="student-job-layout">
+    <div class="student-job-main">
+      <article class="student-job-card">
+        <h3>About This Role</h3>
+        <p>{{ job.description|default:"Role details will be shared by the hiring faculty."|linebreaksbr }}</p>
+      </article>
+
+      <article class="student-job-card">
+        <h3>Key Responsibilities</h3>
+        <ul>
+          {% for item in required_skills_items %}
+            <li>{{ item }}</li>
+          {% empty %}
+            <li>Collaborate with faculty and team members to deliver project goals.</li>
+            <li>Communicate progress, blockers, and outcomes clearly.</li>
+          {% endfor %}
+        </ul>
+      </article>
+
+      <article class="student-job-card">
+        <h3>Requirements & Qualifications</h3>
+        <ul>
+          {% for item in confidence_items %}
+            <li>{{ item }}</li>
+          {% empty %}
+            <li>Strong communication and collaboration skills.</li>
+            <li>Ability to learn quickly and work independently.</li>
+          {% endfor %}
+        </ul>
+      </article>
+    </div>
+
+    <aside class="student-job-side">
+      <article class="student-job-card student-job-cta">
+        <button type="button" class="student-apply-btn" data-student-apply-btn {% if application %}disabled{% endif %}>
+          <i class="bi bi-send"></i>
+          <span>{% if application %}Application Submitted{% else %}Apply Now{% endif %}</span>
+        </button>
+        <button type="button" class="student-save-btn{% if is_saved %} is-saved{% endif %}" data-student-save-btn aria-pressed="{% if is_saved %}true{% else %}false{% endif %}">
+          <i class="bi {% if is_saved %}bi-bookmark-fill{% else %}bi-bookmark{% endif %}"></i>
+          <span>{% if is_saved %}Saved{% else %}Save for Later{% endif %}</span>
+        </button>
+        {% if application %}
+          <p class="student-job-status-line">Status: <strong>{{ application.get_status_display }}</strong></p>
+          <a class="student-mini-link" href="{% url 'student-applications' %}">Go to Application Portal</a>
+        {% endif %}
+      </article>
+
+      <article class="student-job-card" data-match-score="{{ match_score|default:0 }}">
+        <h4>Your Match Score</h4>
+        <div class="student-match-meter">
+          <div class="student-match-meter-fill" data-student-match-meter-fill></div>
+        </div>
+        <p>{{ match_score }}% skill alignment with this listing.</p>
+      </article>
+    </aside>
+  </div>
+</section>
+{% endblock %}

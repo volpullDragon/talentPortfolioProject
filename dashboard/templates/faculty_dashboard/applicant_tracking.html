@@ -1,0 +1,156 @@
+{# Applicant Tracking template. #}
+{% extends "home/base.html" %}
+{% load humanize %}
+{% block title %}Talented Bank - Applicant Tracking{% endblock %}
+
+{% block content %}
+
+<section class="faculty-applicant-tracking-page">
+  <a href="{% url 'dashboard-home' %}" class="faculty-job-detail-back-link">
+    <i class="bi bi-arrow-left"></i>
+    <span>Back to Dashboard</span>
+  </a>
+  
+<header class="faculty-applicant-hero">
+    <div class="faculty-applicant-hero-content">
+      <h1><i class="bi bi-people"></i> Applicant Tracking</h1>
+      <p>Manage applications to your job listings</p>
+    </div>
+  </header>
+
+  <div class="faculty-applicant-stats">
+    <div class="faculty-stat-card">
+      <div class="faculty-stat-number">{{ total_applicants }}</div>
+      <div class="faculty-stat-label">Total Applicants</div>
+    </div>
+    <div class="faculty-stat-card">
+      <div class="faculty-stat-number">{{ new_count }}</div>
+      <div class="faculty-stat-label">Pending</div>
+    </div>
+    <div class="faculty-stat-card">
+      <div class="faculty-stat-number">{{ reviewing_count }}</div>
+      <div class="faculty-stat-label">Under Review</div>
+    </div>
+    <div class="faculty-stat-card">
+      <div class="faculty-stat-number">{{ interview_count }}</div>
+      <div class="faculty-stat-label">Interview Stage</div>
+    </div>
+    <div class="faculty-stat-card">
+      <div class="faculty-stat-number">{{ offer_count }}</div>
+      <div class="faculty-stat-label">Offers Sent</div>
+    </div>
+  </div>
+
+  <div class="faculty-applicant-container">
+    <form method="get" class="faculty-filters">
+      <h3><i class="bi bi-funnel"></i> Filters</h3>
+      <div class="faculty-filter-row">
+        <div class="faculty-filter-group">
+          <label>Status</label>
+          <select class="form-control" name="status">
+            <option value="all" {% if active_status == 'all' %}selected{% endif %}>All statuses</option>
+            <option value="pending" {% if active_status == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="under_review" {% if active_status == 'under_review' %}selected{% endif %}>Under Review</option>
+            <option value="interview" {% if active_status == 'interview' %}selected{% endif %}>Interview</option>
+            <option value="offer" {% if active_status == 'offer' %}selected{% endif %}>Offer</option>
+            <option value="not_selected" {% if active_status == 'not_selected' %}selected{% endif %}>Not Selected</option>
+          </select>
+        </div>
+        <div class="faculty-filter-group">
+          <label>Job Listing</label>
+          <select class="form-control" name="job">
+            <option value="">All Positions</option>
+            {% for job in jobs %}
+              <option value="{{ job.id }}" {% if active_job_id == job.id %}selected{% endif %}>{{ job.job_title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="faculty-filter-group faculty-filter-actions">
+          <label>&nbsp;</label>
+          <button type="submit" class="btn btn-primary">Apply Filters</button>
+        </div>
+      </div>
+    </form>
+
+    {% if applicants %}
+      <div class="faculty-applicants-list">
+        {% for application in applicants %}
+          {% with student=application.student_portfolio.student %}
+          <div class="faculty-applicant-card">
+            <div class="faculty-applicant-header">
+              <div class="faculty-applicant-info">
+                <h3>{{ student.get_full_name|default:student.username }}</h3>
+                <p>{{ student.current_course|default:"Degree Program" }}</p>
+                <p class="faculty-applicant-email"><i class="bi bi-envelope"></i> {{ student.email }}</p>
+              </div>
+              <div class="faculty-applicant-match">
+                <div class="faculty-match-badge">{{ application.get_status_display }}</div>
+              </div>
+            </div>
+
+            <div class="faculty-applicant-details">
+              <div class="faculty-applicant-meta">
+                <span><strong>Applied:</strong> {{ application.applied_at|date:"d/m/Y" }}</span>
+                <span><strong>Applied for:</strong> {{ application.job_listing.job_title }}</span>
+              </div>
+
+              {% if application.student_portfolio.fields_of_expertise.all %}
+                <div class="faculty-applicant-skills">
+                  {% for field in application.student_portfolio.fields_of_expertise.all %}
+                    <span class="faculty-skill-badge">{{ field.field_of_expertise }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <div class="faculty-applicant-status">
+                <span class="faculty-status-badge faculty-status-{{ application.status }}">{{ application.get_status_display }}</span>
+              </div>
+            </div>
+
+            <div class="faculty-applicant-actions">
+              <a href="{% url 'faculty-view-student-portfolio' student.id %}" class="btn btn-sm btn-primary">View Portfolio</a>
+              <a href="{% url 'interview-schedule' %}?open_schedule=1&student_portfolio={{ application.student_portfolio.id }}&job_listing={{ application.job_listing.id }}" class="btn btn-sm btn-success">Schedule Interview</a>
+
+              {% if application.status == 'pending' %}
+                <form method="post" action="{% url 'update-application-status' application.id %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="under_review">
+                  <button type="submit" class="btn btn-sm btn-secondary">Start Review</button>
+                </form>
+              {% endif %}
+
+              {% if application.status != 'offer' %}
+                <form method="post" action="{% url 'update-application-status' application.id %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="offer">
+                  <button type="submit" class="btn btn-sm btn-warning">Send Offer</button>
+                </form>
+              {% endif %}
+
+              {% if application.status != 'not_selected' %}
+                <form method="post" action="{% url 'update-application-status' application.id %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="not_selected">
+                  <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                </form>
+              {% endif %}
+
+              <form method="post" action="{% url 'delete-application' application.id %}" data-confirm-message="Delete this applicant from tracking?">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-danger">Delete Applicant</button>
+              </form>
+            </div>
+          </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="faculty-empty-state">
+        <i class="bi bi-inbox"></i>
+        <h2>No Applicants Yet</h2>
+        <p>When students apply to your job listings, they will appear here.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

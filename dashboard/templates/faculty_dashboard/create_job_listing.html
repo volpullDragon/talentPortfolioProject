@@ -1,0 +1,196 @@
+{% extends "home/base.html" %}
+{% block title %}Talented Bank - Create Job Listing{% endblock %}
+
+{% block content %}
+<section class="faculty-create-job-page">
+  <a href="{% url 'faculty-profile' %}" class="faculty-job-detail-back-link">
+    <i class="bi bi-arrow-left"></i>
+    <span>Back to Profile</span>
+  </a>
+
+  <header class="faculty-create-job-hero">
+    <div class="faculty-create-job-hero-content">
+      <h1><i class="bi bi-briefcase"></i> Create Job Listing</h1>
+      <p>Post a new opportunity for students</p>
+    </div>
+  </header>
+
+  <div class="faculty-create-job-container">
+    <div class="faculty-create-job-card">
+      <div class="faculty-create-job-section">
+        <h2><i class="bi bi-info-circle"></i> Basic Information</h2>
+        <form method="post" id="createJobForm" class="faculty-create-job-form">
+          {% csrf_token %}
+          
+          <div class="faculty-form-group">
+            <label for="{{ form.job_title.id_for_label }}">{{ form.job_title.label }} <span class="required">*</span></label>
+            {{ form.job_title }}
+            {% if form.job_title.errors %}
+              <div class="form-error">{{ form.job_title.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="faculty-form-row">
+            <div class="faculty-form-group faculty-form-group-half">
+              <label for="{{ form.location.id_for_label }}">{{ form.location.label }} <span class="required">*</span></label>
+              {{ form.location }}
+              {% if form.location.errors %}
+                <div class="form-error">{{ form.location.errors.0 }}</div>
+              {% endif %}
+            </div>
+            <div class="faculty-form-group faculty-form-group-half">
+              <label>Department <span class="required">*</span></label>
+              <select name="department" class="form-control" required>
+                <option value="">Select</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Business">Business</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="faculty-form-row">
+            <div class="faculty-form-group faculty-form-group-half">
+              <label>Job Type <span class="required">*</span></label>
+              <input type="text" class="form-control" name="job_type" placeholder="e.g. Full-time" required>
+            </div>
+            <div class="faculty-form-group faculty-form-group-half">
+              <label for="{{ form.salary.id_for_label }}">{{ form.salary.label }}</label>
+              {{ form.salary }}
+            </div>
+          </div>
+
+          <div class="faculty-form-group">
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }} <span class="required">*</span></label>
+            {{ form.description }}
+            <div class="form-hint">Provide a detailed description of the role, team, and what the candidate will be working on...</div>
+            {% if form.description.errors %}
+              <div class="form-error">{{ form.description.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="faculty-form-group">
+            <label>Required Skills & Tools <span class="required">*</span></label>
+            <div class="faculty-pill-input-wrapper">
+              <input type="text" class="form-control faculty-skill-input" placeholder="e.g. Build and maintain web applications" data-pill-input-field="skills">
+              <button type="button" class="btn btn-primary faculty-add-skill-btn" data-add-skill>Add</button>
+            </div>
+            <div class="faculty-skills-preview" data-skills-container>
+              <!-- Pills render here -->
+            </div>
+            <input type="hidden" name="required_skills_and_tools" value="" data-skills-hidden>
+          </div>
+
+          <div class="faculty-form-group">
+            <label>Level of Confidence <span class="required">*</span></label>
+            <div class="faculty-pill-input-wrapper">
+              <input type="text" class="form-control faculty-confidence-input" placeholder="e.g. HTML, CSS, Python" data-pill-input-field="confidence">
+              <button type="button" class="btn btn-primary faculty-add-confidence-btn" data-add-confidence>Add</button>
+            </div>
+            <div class="faculty-confidence-preview" data-confidence-container>
+              <!-- Pills render here -->
+            </div>
+            <input type="hidden" name="level_of_confidence" value="" data-confidence-hidden>
+          </div>
+
+          <div class="faculty-form-group">
+            <label for="{{ form.application_deadline.id_for_label }}">{{ form.application_deadline.label }}</label>
+            {{ form.application_deadline }}
+          </div>
+
+          <div class="faculty-form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="bi bi-plus-circle"></i> Create Job Listing
+            </button>
+            <a href="{% url 'faculty-profile' %}" class="btn btn-outline-secondary btn-lg">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initFacultyJobCreationForm();
+});
+
+function initFacultyJobCreationForm() {
+  // Skills management
+  const skillsInput = document.querySelector('[data-pill-input-field="skills"]');
+  const skillsAddBtn = document.querySelector('[data-add-skill]');
+  const skillsContainer = document.querySelector('[data-skills-container]');
+  const skillsHidden = document.querySelector('[data-skills-hidden]');
+  let skills = [];
+
+  skillsAddBtn.addEventListener('click', () => addSkill());
+  skillsInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); addSkill(); }
+  });
+
+  function addSkill() {
+    const val = skillsInput.value.trim();
+    if (val && !skills.includes(val)) {
+      skills.push(val);
+      renderSkills();
+      skillsInput.value = '';
+    }
+  }
+
+  function removeSkill(idx) {
+    skills.splice(idx, 1);
+    renderSkills();
+  }
+
+  function renderSkills() {
+    skillsContainer.innerHTML = skills.map((s, i) => `
+      <div class="faculty-skill-pill portfolio-strength-item">
+        <span>${s}</span>
+        <button type="button" class="portfolio-strength-remove-btn" onclick="event.preventDefault(); window.initFacultyJobCreationForm_removeSkill(${i});">×</button>
+      </div>
+    `).join('');
+    skillsHidden.value = skills.join('\n');
+  }
+
+  // Confidence management
+  const confInput = document.querySelector('[data-pill-input-field="confidence"]');
+  const confAddBtn = document.querySelector('[data-add-confidence]');
+  const confContainer = document.querySelector('[data-confidence-container]');
+  const confHidden = document.querySelector('[data-confidence-hidden]');
+  let confidence = [];
+
+  confAddBtn.addEventListener('click', () => addConfidence());
+  confInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); addConfidence(); }
+  });
+
+  function addConfidence() {
+    const val = confInput.value.trim();
+    if (val && !confidence.includes(val)) {
+      confidence.push(val);
+      renderConfidence();
+      confInput.value = '';
+    }
+  }
+
+  function removeConfidence(idx) {
+    confidence.splice(idx, 1);
+    renderConfidence();
+  }
+
+  function renderConfidence() {
+    confContainer.innerHTML = confidence.map((c, i) => `
+      <div class="faculty-confidence-pill portfolio-strength-item">
+        <span>${c}</span>
+        <button type="button" class="portfolio-strength-remove-btn" onclick="event.preventDefault(); window.initFacultyJobCreationForm_removeConfidence(${i});">×</button>
+      </div>
+    `).join('');
+    confHidden.value = confidence.join('\n');
+  }
+
+  window.initFacultyJobCreationForm_removeSkill = removeSkill;
+  window.initFacultyJobCreationForm_removeConfidence = removeConfidence;
+}
+</script>
+{% endblock %}
