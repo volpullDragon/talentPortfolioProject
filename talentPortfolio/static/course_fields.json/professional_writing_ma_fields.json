@@ -1,0 +1,48 @@
+{
+  "course": "Professional Writing MA",
+  "course_family": "Business & Management",
+  "groups": {
+    "Strategy & Operations": [
+      "Business Strategy",
+      "Operations Management",
+      "Process Improvement",
+      "Risk Management"
+    ],
+    "Marketing & Growth": [
+      "Market Research",
+      "Digital Marketing",
+      "Brand Management",
+      "Customer Insights"
+    ],
+    "People & Leadership": [
+      "Team Leadership",
+      "Stakeholder Management",
+      "Negotiation",
+      "Presentation Skills"
+    ],
+    "Commercial Skills": [
+      "Project Management",
+      "Business Analysis",
+      "Entrepreneurship",
+      "Data-Driven Decision Making"
+    ]
+  },
+  "fields": [
+    "Business Strategy",
+    "Operations Management",
+    "Process Improvement",
+    "Risk Management",
+    "Market Research",
+    "Digital Marketing",
+    "Brand Management",
+    "Customer Insights",
+    "Team Leadership",
+    "Stakeholder Management",
+    "Negotiation",
+    "Presentation Skills",
+    "Project Management",
+    "Business Analysis",
+    "Entrepreneurship",
+    "Data-Driven Decision Making"
+  ]
+}

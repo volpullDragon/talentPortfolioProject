@@ -1,0 +1,48 @@
+{
+  "course": "Psychology BSc Honours",
+  "course_family": "Psychology & Social Sciences",
+  "groups": {
+    "Research Methods": [
+      "Research Design",
+      "Quantitative Methods",
+      "Qualitative Methods",
+      "Data Interpretation"
+    ],
+    "Applied Practice": [
+      "Behaviour Analysis",
+      "Interviewing Skills",
+      "Assessment Skills",
+      "Case Formulation"
+    ],
+    "Society & Policy": [
+      "Social Policy",
+      "Community Engagement",
+      "Ethics in Practice",
+      "Evidence-Based Intervention"
+    ],
+    "Professional Skills": [
+      "Report Writing",
+      "Critical Evaluation",
+      "Communication Skills",
+      "Team Collaboration"
+    ]
+  },
+  "fields": [
+    "Research Design",
+    "Quantitative Methods",
+    "Qualitative Methods",
+    "Data Interpretation",
+    "Behaviour Analysis",
+    "Interviewing Skills",
+    "Assessment Skills",
+    "Case Formulation",
+    "Social Policy",
+    "Community Engagement",
+    "Ethics in Practice",
+    "Evidence-Based Intervention",
+    "Report Writing",
+    "Critical Evaluation",
+    "Communication Skills",
+    "Team Collaboration"
+  ]
+}
